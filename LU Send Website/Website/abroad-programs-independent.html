@@ -1,0 +1,86 @@
+<style type="text/css">
+#pagebodycontentheader h2{
+    text-align: center;
+}
+
+#pagenav-wrapper {
+    display: none;
+}
+
+#home_button {
+    position: fixed;
+    z-index: 100;
+    top: 10px;
+    left: 10px;
+}
+
+#home_button a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: .95em;
+    color: #000000;
+    text-align: center;
+}
+
+#home_button a:hover {
+    color: #606060;
+}
+</style>
+
+<div id="home_button"><a href="/"><i class="fa fa-2x">&nbsp;</i><i aria-hidden="true" class="fa fa-home fa-2x">&nbsp;</i></a></div>
+
+<div id="general-overview">
+<div id="home_applied" onclick=""><span>Already Applied?</span><a href="/secure/">LIBERTY LOGIN</a><a href="/index.cfm?FuseAction=Security.ExistingUserLogin">NON-LIBERTY LOGIN</a></div>
+<div class="trip-overview">
+    <span class="center-block" style="text-align: center;"><strong>Liberty University values the safety of its students. Considering this fact, the University has deemed specific countries unsafe for travel.<br />For more information on which countries are restricted, please speak to your International Education Coordinator.</strong></span><br />
+    <div class="row-overview" style="min-height: 1px; height: 350px; display: table;">
+        <div class="row-item right" style="width:49%;"><div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21503'); min-height: 350px;"></div></div>
+        <div class="row-item left" style="width:49%; height: auto;">
+            <div class="row-info-single-block">
+                <span class="title">Independent Programs</span>
+                <span class="summary center-block" style="text-align: center;">These programs are exclusively for students looking for tangible ways to gain hands on professional experience in a cross culturally rich environments.</span><br />
+                <span class="summary">
+                    <strong>LU Send Abroad Independent Internships: </strong>Participating in these programs provide tangible ways to gain hands on professional experience in a cross culturally rich environments. Students will work alongside and learn from specialists within their field of study. These programs are exclusively for students looking for internship opportunities.
+                    <ul style="font-size: 18px; text-decoration: underline; margin-top: 5px;">
+                        <li><a href="https://www.elic.org/" target="_blank">ELIC</a></li>
+                        <li><a href="http://www.unleashedinternships.org/" target="_blank">Global Entrepreneurs International - Unleashed Internships</a></li>
+                        <li><a href="https://www.christar.org/" target="_blank">Christar</a></li>
+                        <li><a href="https://www.simusa.org/" target="_blank">SIM</a></li>
+                        <li><a href="http://internships.omusa.org/" target="_blank">Operation Mobilization</a></li>
+                        <li><a href="https://slv.global/" target="_blank">SLV Global</a></li>
+                        <li><a href="https://www.abwe.org/" target="_blank">ABWE</a></li>
+                        <li><a href="https://www.nics.org/" target="_blank">NICS</a></li>
+                        <li><a href="https://www.gviusa.com/" target="_blank">GVI – Global Vision International</a></li>
+                    </ul>
+                    <i>NOTE: Students <strong>cannot</strong> use Liberty awarded scholarships or outside loans, scholarships, and grants for program cost. For more information on Independent Internship Program specifics please see the Policy & Guidelines and the FAQs.</i>
+            </span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<<<<<<< HEAD
+=======
+
+<script>
+$(document).ready(function(){
+  if($("#pagenav a:contains(Logout)").length == 1) {
+    $("#home_applied span").text("Navigation Links");
+    $("#home_applied a:nth-child(2)").text("MY APPLICATIONS");
+    $("#home_applied a:nth-child(2)").attr("href", "/index.cfm?FuseAction=Students.Home&RequiredProfile=1");
+
+    if($("#pagenav a:contains(Administrative)").length == 1) {
+      $("#home_applied a:nth-child(3)").text("ADMINISTRATIVE");
+      $("#home_applied a:nth-child(3)").attr("href", "/index.cfm?FuseAction=Administration.Home&RequiredProfile=1");
+    } else {
+      $("#home_applied a:nth-child(3)").css("display","none");
+    }
+
+    var newlink = document.createElement("a");
+    newlink.setAttribute("href", "/index.cfm?FuseAction=Security.Logout");
+    newlink.innerHTML = "LOGOUT";
+    $("#home_applied").append(newlink);
+  };
+});
+</script>
+>>>>>>> a60489faf767071553cc7455ad297bad8f55cc20

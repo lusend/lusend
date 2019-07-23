@@ -1,0 +1,313 @@
+<style type="text/css">
+#pagebodycontentheader{
+    display: none;
+}
+
+#pagenav-wrapper {
+    display: none;
+}
+
+#home_button {
+    position: fixed;
+    z-index: 100;
+    top: 10px;
+    left: 10px;
+}
+
+#home_button a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: .95em;
+    color: #000000;
+    text-align: center;
+}
+
+#home_button a:hover {
+    color: #606060;
+}
+</style>
+
+<div id="home_button"><a href="/"<i class="fa fa-2x">&nbsp;</i><i aria-hidden="true" class="fa fa-home fa-2x">&nbsp;</i></a></div>
+
+<div id="general-overview">
+<div id="home_applied" onclick=""><span>Already Applied?</span><a href="/secure/">LIBERTY LOGIN</a><a href="/index.cfm?FuseAction=Security.ExistingUserLogin">NON-LIBERTY LOGIN</a></div>
+<div class="trip-start">LU Abroad<br />Program Process</div>
+<div class="primary-circle start" id="start"></div>
+
+<div class="trip-overview" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21523');">
+    <img src="https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21522" id="plane" class="plane-top" width="50px" height="50px">
+
+    <div class="row-overview">
+        <div class="row-item left"><div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21504');"></div></div>
+        <div class="row-item right">
+            <div class="row-info" id="ro1">
+                <span class="title">Determine Eligibility</span><br />
+                <span class="summary">&nbsp;</span>
+                <span class="text">
+                    <ul>
+                        <li>Students must meet specific requirements and deadlines to be eligible to participate in a LU Send Abroad program.</li>
+                        <li>Students must have obtained 24 college credits prior to the semester they are planning to Study Abroad (these can be transfer or Liberty credits).</li>
+                        <li>Students need to meet the specific GPA requirements of their selected program.  </li>
+                        <li>Students must complete the required Background Check within their LU Send application.</li>
+                        <li>Students must be in good academic standing at the time of application and immediately prior to the LU Send Abroad program term.</li>
+                        <li>Students on academic suspension or probation at the time of application or immediately prior to the LU Send Abroad program are not eligible to participate.</li>
+                        <li>Students on disciplinary probation and/or who have a significant history of disciplinary problems may not be eligible to participate.</li>
+                        <li>Students must be at least 18 years old to study abroad. Exceptions may be considered on a case-by-case basis. </li>
+                        <li>Students must be enrolled in a degree seeking program at Liberty University (full or part-time). </li>
+                        <li>Incoming transfer students must complete at least one semester (fall or spring, full or part-time) at Liberty University prior to participating in an LU Send Abroad program.</li>
+                        <li>Students who wish to participate in a LU Send Abroad program who do not meet the stated criteria for that program must submit a petition to the LU Send Office asking permission to do so. The petition will be reviewed by the Faculty & Staff Committee on Education Abroad (FSCEA) for final approval. Please email lusendabroad@liberty.edu  for instructions. </li>
+                        <li>Students are required to adhere to The <a href="C:\Users\rmason13\Documents\LU Send Abroad\LU Send Abroad Restructure\TheLIbertyWay-8-2018.pdf">Liberty Way - Student Honor Code</a>. If we are informed of any breaches to the code of conduct, there may be ramifications when you return to campus.</li>
+                    </ul>
+                </span>
+                <button type="button" class="overview-button" onclick="createModal('ro1')">See More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-overview">
+        <div class="row-item right"><div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21505');"></div></div>
+        <div class="row-item left">
+            <div class="row-info" id="ro2">
+                <span class="title">LU Send Abroad Advising</span><br />
+                <span class="summary">&nbsp;</span>
+                <span class="text">
+                    <ul>
+                        <li>Ready to <a href="/?go=started">Get Started</a>?</li>
+                        <li>Students are required to attend Advising sessions 101 & 201. </li>
+                        <li>The Advising sessions will cover everything you need to know about the LU Send Abroad program. </li>
+                    </ul>
+                </span>
+                <button type="button" class="overview-button" onclick="createModal('ro2')">See More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-overview">
+        <div class="row-item left"><div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21506');"></div></div>
+        <div class="row-item right">
+            <div class="row-info" id="ro3">
+                <span class="title">Application Process</span><br />
+                <span class="summary">&nbsp;</span>
+                <span class="text">
+                    Deadlines & Steps to begin your LU Send Application:<br />
+                    <ul>
+                        <li>Program Selection Form (All students)</li>
+                        <ul>
+                            <li>Spring - October 1st</li>
+                            <li>Summer - March 15th</li>
+                            <li>Fall - April 15th</li>
+                        </ul>
+                        <li>Internship Agreement Form (Internship Specific) </li>
+                        <li>Course Approval Form (Study Abroad Custom Program Specific) </li>
+                        <li>Apply to your respective program:</li>
+                        <ul>
+                            <li>Signature Program </li>
+                            <li>Custom Program </li>
+                            <li>Independent Internship </li>
+                        </ul>
+                        <li>LU Send Pre-Decision Application Deadlines</li>
+                        <ul>
+                            <li>Spring - October 30th</li>
+                            <li>Summer - April 15th</li>
+                            <li>Fall - May 15th</li>
+                        </ul>
+                        <li>LU Send Post-Decision Application Deadlines</li>
+                        <ul>
+                            <li>Spring - December 1st</li>
+                            <li>Summer - May 15th</li>
+                            <li>Fall - July 15th</li>
+                        </ul>
+                    </ul>
+                    <i>NOTE: In order to begin your LU Send Application you are required to complete the Program Selection Form and apply to your specific organization (i.e. Living & Learning International, ISA, ELIC, etc.).</i><br /><br />
+                    <i>NOTE: Deadlines for your respective program and your LU Send Abroad application are different.</i>
+                </span>
+                <button type="button" class="overview-button" onclick="createModal('ro3')">See More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-overview">
+        <div class="row-item right"><div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21507');"></div></div>
+        <div class="row-item left">
+            <div class="row-info" id="ro4">
+                <span class="title">Application Review & Acceptance</span><br />
+                <span class="summary">&nbsp;</span>
+                <span class="text">
+                    <ul>
+                        <li>Applications will be reviewed once students have completed and submitted the pre-approval portion of the LU Send Abroad Application.</li>
+                        <li>A decision will be reached within 7-10 business days after submission.</li>
+                        <li>Upon approval, students will receive an acceptance email including “Next Steps”. </li>
+                    </ul>
+                </span>
+                <button type="button" class="overview-button" onclick="createModal('ro4')">See More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-overview">
+        <div class="row-item left"><div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21508');"></div></div>
+        <div class="row-item right">
+            <div class="row-info" id="ro5">
+                <span class="title">Commitment</span><br />
+                <span class="summary">&nbsp;</span>
+                <span class="text">
+                    <ul>
+                        <li>The post-acceptance application includes important questionnaires, signature documents, material submissions and learning content to finalize your approval and preparation to go abroad.</li>
+                        <li>This part of the application includes:</li>
+                        <ul>
+                            <li>Passport Information,</li>
+                            <li>Study Abroad Commitment Deposit</li>
+                            <li>Medical Information</li>
+                            <li>Flight Itinerary</li>
+                            <li>Etc.</li>
+                        </ul>
+                    </ul>
+                    <i>NOTE: Students will not have full clearance to go abroad until their application process is completed and submitted.</i>
+
+                </span>
+                <button type="button" class="overview-button" onclick="createModal('ro5')">See More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-overview">
+        <div class="row-item right"><div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21514');"></div></div>
+        <div class="row-item left">
+            <div class="row-info" id="ro6">
+                <span class="title">Equip</span><br />
+                <span class="summary">&nbsp;</span>
+                <span class="text">
+                    <ul>
+                        <li>Attend the mandatory LU Send Abroad pre-departure orientation.</li>
+                        <li>Research important cultural and language tips and details</li>
+                            <ul>
+                                <li><a href="https://www.lonelyplanet.com/">https://www.lonelyplanet.com/</a></li>
+                                <li><a href="https://www.cia.gov/library/publications/the-world-factbook/">https://www.cia.gov/library/publications/the-world-factbook/</a></li>
+                                <li><a href="https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html/ ">https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html</a></li>
+                            </ul>
+                        <li>Students should begin keeping a record of important in country contacts.</li>
+                    </ul>
+                </span>
+                <button type="button" class="overview-button" onclick="createModal('ro6')">See More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-overview">
+        <div class="row-item left"><div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21515');"></div></div>
+        <div class="row-item right">
+            <div class="row-info" id="ro7">
+                <span class="title">While Abroad</span><br />
+                <span class="summary">&nbsp;</span>
+                <span class="text">
+                    <ul>
+                        <li>Students returning to Liberty University after their semester abroad should be aware of: </li>
+                            <ul>
+                                <li>Course Registration Deadlines</li>
+                                <li>Housing Registration Deadlines</li>
+                                <li>Financial Check-in Deadlines </li>
+                            </ul>
+                        <li>Students <strong>must</strong> update their LU Send Abroad application when traveling outside of their designated program location. </li>
+                        <li>Students will need to continue to check their Liberty e-mail. </li>
+                    </ul>
+                </span>
+                <button type="button" class="overview-button" onclick="createModal('ro7')">See More</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-overview">
+        <div class="row-item right"><div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21502');"></div></div>
+        <div class="row-item left">
+            <div class="row-info" id="ro8">
+                <span class="title">Return</span><br />
+                <span class="summary">&nbsp;</span>
+                <span class="text">
+                    Coming Soon...
+                </span>
+                <button type="button" class="overview-button" onclick="createModal('ro8')">See More</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="primary-circle end" id="end"></div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalTitle"></h4>
+            </div>
+            <div class="modal-body" id="myModalBody"></div>
+            <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var originalPosition = $("#plane").position().top;
+    var originalWidth = $("#plane").width();
+    var originalHeight = $("#plane").height();
+    var heightToWidthRatio = originalHeight / originalWidth;
+    var maxGrowth = 50;
+
+    $(document).ready(function() {
+        originalPosition = $("#plane").position().top;
+        originalWidth = $("#plane").width();
+        originalHeight = $("#plane").height();
+        heightToWidthRatio = originalHeight / originalWidth;
+        maxGrowth = 50;
+<<<<<<< HEAD
+=======
+
+        if($("#pagenav a:contains(Logout)").length == 1) {
+          $("#home_applied span").text("Navigation Links");
+          $("#home_applied a:nth-child(2)").text("MY APPLICATIONS");
+          $("#home_applied a:nth-child(2)").attr("href", "/index.cfm?FuseAction=Students.Home&RequiredProfile=1");
+
+          if($("#pagenav a:contains(Administrative)").length == 1) {
+            $("#home_applied a:nth-child(3)").text("ADMINISTRATIVE");
+            $("#home_applied a:nth-child(3)").attr("href", "/index.cfm?FuseAction=Administration.Home&RequiredProfile=1");
+          } else {
+            $("#home_applied a:nth-child(3)").css("display","none");
+          }
+
+          var newlink = document.createElement("a");
+          newlink.setAttribute("href", "/index.cfm?FuseAction=Security.Logout");
+          newlink.innerHTML = "LOGOUT";
+          $("#home_applied").append(newlink);
+        };
+>>>>>>> a60489faf767071553cc7455ad297bad8f55cc20
+    });
+
+    $(document).scroll(function () {
+        var totalDist = $(document).height() - window.innerHeight;
+        var currDist = $(window).scrollTop();
+        var fraction = currDist / totalDist;
+        var distToCover = $("#start").offset().top - $("#end").offset().top;
+        var planePixels = originalPosition - distToCover * fraction;
+        $("#plane").css("top", planePixels + "px");
+
+        if(fraction <= .5){
+            var currGrowth = maxGrowth * fraction * 2;
+        }else{
+            var currGrowth = maxGrowth * (1 - fraction) * 2;
+        }
+
+        var currWidth = currGrowth + originalWidth;
+        var currHeight = currGrowth * heightToWidthRatio + originalHeight;
+
+        $("#plane").css("width", currWidth + "px");
+        $("#plane").css("height", currHeight + "px");
+    });
+
+    function createModal(id){
+        document.getElementById("myModalTitle").innerHTML = document.getElementById(id).getElementsByClassName("title")[0].innerHTML;
+        document.getElementById("myModalBody").innerHTML = document.getElementById(id).getElementsByClassName("text")[0].innerHTML;
+
+        $("#myModal").modal();
+    }
+</script>
