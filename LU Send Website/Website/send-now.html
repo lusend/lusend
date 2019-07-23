@@ -1,0 +1,155 @@
+<style type="text/css">
+body {
+    overflow: hidden;
+}
+
+#G5 span.center {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#G5 .fa {
+    opacity: 1;
+    position: initial;
+    color: white;
+    top: auto;
+    left: auto;
+    transform: none;
+    transition: all .5s ease 0s;
+}
+
+.public-page-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: #0a254e;
+}
+
+#pagebodycontentheader {
+    display: none;
+}
+
+#pagefooter {
+    display: none;
+}
+
+#pageheader {
+    display: none;
+}
+
+#pagenav-wrapper {
+    display: none;
+}
+
+#home_button {
+    position: fixed;
+    z-index: 100;
+    top: 10px;
+    left: 10px;
+}
+
+#home_button a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: .95em;
+    color: #ffffff;
+    text-align: center;
+}
+
+#home_button a:hover {
+    color: #858585;
+}
+</style>
+
+<div id="home_button"><a href="/"><i class="fa fa-2x">&nbsp;</i><i aria-hidden="true" class="fa fa-home fa-2x">&nbsp;</i></a></div>
+
+<div id="G5" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22410');">
+    <div id="home_applied" onclick=""><span>Already Applied?</span><a href="/secure/">LIBERTY LOGIN</a><a href="/index.cfm?FuseAction=Security.ExistingUserLogin">NON-LIBERTY LOGIN</a></div>
+    <div class="logo-container">
+        <div class="center">
+            <img src="https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22403" style="width: 70%" alt="Logo" />
+        </div>
+    </div>
+    <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="option option-3" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22411');">
+            <div class="background">
+                <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-pencil fa-5x">&nbsp;</i></span>
+                <div class="text">
+                    <div class="title title-other">APPLY</div>
+                    <div class="desc">Students Apply to either Hands and Feet Ministry (Humanitarian Aid) or Head and Heart Ministry (Psychological and Spiritual Aid). Leaders fill out the leader application. Students must also fill out the $100 Student Deposit.</div>
+                    <a href="" target="_blank" class="link">Apply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="option option-1" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22408');">
+            <div class="background">
+                <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-check-circle fa-5x">&nbsp;</i></span>
+                <div class="text">
+                    <div class="title title-other">REQUISITES</div>
+                    <div class="desc">Depending on where you want to go, you can fill out your application to be part of the Domestic Team or the International and Domestic Team. The following link lays out the various requirements for both teams.</div>
+                    <a href="" class="link">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="option option-2" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=23612');">
+            <div class="background">
+                <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-book fa-5x">&nbsp;</i></span>
+                <div class="text">
+                    <div class="title title-other">TRAININGS</div>
+                    <div class="desc">Every student who applies to be part of LU Send Now must undergo this training. Click the button below to view and sign up for one of the training sessions.</div>
+                    <a href="" target="_blank" class="link">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="option option-4" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22409');">
+            <div class="background">
+                <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-gift fa-5x">&nbsp;</i></span>
+                <div class="text">
+                    <div class="title title-other">DONATIONS</div>
+                    <div class="desc">The ongoing success of Send Now is largely due to the gifts and contributions of those who donate to the initiative. All proceeds go directly to the Send Now initiative and is the reason why we can send students at a moment’s notice.</div>
+                    <a href="" target="_blank" class="link">Donate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  if($("#pagenav a:contains(Logout)").length == 1) {
+    $("#home_applied span").text("Navigation Links");
+    $("#home_applied a:nth-child(2)").text("MY APPLICATIONS");
+    $("#home_applied a:nth-child(2)").attr("href", "/index.cfm?FuseAction=Students.Home&RequiredProfile=1");
+
+    if($("#pagenav a:contains(Administrative)").length == 1) {
+      $("#home_applied a:nth-child(3)").text("ADMINISTRATIVE");
+      $("#home_applied a:nth-child(3)").attr("href", "/index.cfm?FuseAction=Administration.Home&RequiredProfile=1");
+    } else {
+      $("#home_applied a:nth-child(3)").css("display","none");
+    }
+
+    var newlink = document.createElement("a");
+    newlink.setAttribute("href", "/index.cfm?FuseAction=Security.Logout");
+    newlink.innerHTML = "LOGOUT";
+    $("#home_applied").append(newlink);
+  };
+});
+</script>

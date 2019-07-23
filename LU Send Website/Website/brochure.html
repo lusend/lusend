@@ -1,0 +1,513 @@
+<script>
+  // PLEASE USE SINGLE QUOTES WHEN ADDING IDS OR URLS
+
+  var travelresources = false; //change false to desired pdf url in single quotes
+  var tripoverview = false; //change false to desired pdf url in single quotes
+  var travelsafety = false; //change false to desired pdf url in single quotes
+  var costguide = false; //change false to desired pdf url in single quotes
+  var flightitinerary = false; //change false to desired pdf url in single quotes
+  var packingguide = false; //change false to desired pdf url in single quotes
+
+  var headerimage = false; //change to the id of the picture if you want a headerimage
+  var displaytitle = true; //change to false if you don't want the title
+  var displaylearnmorebutton = true; //change this to false if you don't want the big learn more button
+  var displaylearnmoresmall = false; //change this to true if you want the learn more button
+  var displaypaysmall = false; //change this to true if you don't want the payment button
+  var displayapplysmall = false; //change this to true if you want the apply button
+  var video = false; //place url here if you want a video displayed
+
+  var paymentdeadlines = {
+    'CQ Payment': 'Due 14 Days After Acceptance', //change to text to be displayed next to CQ Assessment
+    'Deposit': 'Due 14 Days After Acceptance', //change to text to be displayed next to Deposit
+    'Payment 1': false, //change to text to be displayed next to payment 1
+    'Payment 2': false, //change to text to be displayed next to payment 2
+    'Payment 3': false, //change to text to be displayed next to payment 3
+    'Payment 4': false, //change to text to be displayed next to payment 4
+    'Payment 5': false, //change to text to be displayed next to payment 5
+    'Final Payment': false //change to text to be displayed next to final payment
+  }
+</script>
+
+<style type="text/css">
+  #pagebodycontent>div.page-header>div>h3.col-sm-10>#brochure-title {
+    position: absolute;
+    color: #ffffff;
+    left: 50%;
+    top: 50%;
+    min-width: 40%;
+    max-width: 80%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+  }
+
+  #pagebodycontentpageactions>div.hidden-sm.hidden-xs,
+  /* Search Stuff */
+  #pagebodycontentheader,
+  /* Brochure Heading + Tips */
+  #pagebodycontent>div.page-header>div>h3.col-sm-10>small,
+  /* Small Descriptor */
+  #pagebodycontent>div.page-header>div>h3.col-sm-2,
+  /* Program Buttons */
+  #pagebodycontent>div.row,
+  /* Location + Apply */
+  #pagebodycontent>div.panel.panel-primary,
+  /* Fact Sheet */
+  #pagebody>div:nth-child(2)>div.panel-heading,
+  /* Description Heading */
+  #pagebody>div:nth-child(4) {
+    /* Dates */
+    display: none;
+    visibility: hidden;
+  }
+
+  #pagebodycontent>div.page-header>div>h3.col-sm-10 {
+    /* Title */
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 200px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 90%;
+    float: none;
+    background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21698');
+    -webkit-background-repeat: no-repeat;
+    -moz-background-repeat: no-repeat;
+    -o-background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    -webkit-background-position: center center;
+    -moz-background-position: center center;
+    -o-background-position: center center;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  #pagebodycontent>div.page-header {
+    /* Remove margin from header */
+    margin: 0;
+    border-bottom: none;
+  }
+
+  #pagebody>div:nth-child(2) {
+    /* Remove border */
+    margin-bottom: -50px;
+    margin-top: -20px;
+    border: 0;
+  }
+
+  #pagebody>form>div>button {
+    /* Style Buttons at the bottom */
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 30px;
+    font-size: 2em;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease 0s;
+  }
+
+  .videoWrapper {
+    position: relative;
+    display: block;
+    padding-bottom: 400px;
+    /* 16:9 */
+    padding-top: 25px;
+    max-width: 800px;
+    margin: auto;
+    height: 0;
+  }
+
+  .videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+  }
+
+  .buttonWrapper {
+    display: block;
+    width: auto;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  #donate-pay-button,
+  #learn-more,
+  #apply-now {
+    display: none;
+  }
+
+  #myModalBody object {
+    width: 100%;
+    height: 80vh;
+  }
+
+  button {
+    margin-left: 5px;
+  }
+
+  .table {
+    position: relative;
+  }
+
+  .table>tbody+tbody {
+    border-top: 1px solid #ddd;
+  }
+
+  .table tr>th {
+    background-color: #ccd9ec;
+    cursor: pointer;
+  }
+
+  .table tr:nth-child(even)>td {
+    background-color: #f2f7ff;
+  }
+
+  .table tr:nth-child(odd)>td {
+    background-color: #fefeff;
+  }
+
+  .expand {
+    display: inline-block;
+    position: absolute;
+    font-size: 20px;
+    cursor: pointer;
+    top: 5px;
+    right: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .modal-dialog {
+      width: 90%;
+    }
+  }
+</style>
+
+<div id="home_page_container" class="trip_overview_container" style="background: white;">
+  <h4 class="dates" id="tripDates">&nbsp;</h4>
+  <div class="fact-container row">
+    <h4 id="trip-pitch-side" class="desc col-sm-7">
+      <span id="trip_pitch">&nbsp;</span>
+      <span class="buttonWrapper">
+        <button data-href="http://www.liberty.edu/lusend/index.cfm?PID=33279" id="donate-pay-button" class="btn btn-secondary" onclick="navigate(this)">Make a Payment</button>
+        <button id="learn-more" class="btn btn-secondary" onclick="createModal('lm')">Learn More</button>
+        <button id="apply-now" class="btn btn-primary" onclick="ApplyNow()">Apply</button>
+      </span>
+      <span class="fact-container videoWrapper">
+        <iframe width="560" height="315" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </span>
+    </h4>
+    <section id="trip-fact-side" class="col-sm-5">
+      <table id="facts_table" class="facts table">
+        <tbody>
+          <tr id="facts_table_title">
+            <th colspan="2" style="text-align:center; border-top: 0;" onclick="expandTable('facts_table_title')">Trip Details<div class="expand" onclick="expandTable('facts_table_title')">+</div>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+
+      <table id="payment_table" class="facts table">
+        <tbody>
+          <tr id="payment_table_title">
+            <th colspan="3" style="text-align:center; border-top: 0;" onclick="expandTable('payment_table_title')">Payment Details<div class="expand" onclick="expandTable('payment_table_title')">+</div>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <div class="group" id="group4" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21698');">
+    <div id="brochure-links" class="row" style="background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0.5), rgba(255,255,255,0), rgba(255,255,255,0), rgba(255,255,255,0), rgba(255,255,255,0), rgba(255,255,255,0.5), rgba(255,255,255,1));">
+      <div><a id="tr" onclick="createModal('tr')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-book fa-3x">&nbsp;</i><br />Travel Resources</span></span></a></div>
+      <div><a id="to" onclick="createModal('to')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-folder fa-3x">&nbsp;</i><br />Trip Overview</span></span></a></div>
+      <div><a id="ts" onclick="createModal('ts')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-exclamation-triangle fa-3x">&nbsp;</i><br />Travel Safety</span></span></a>
+      </div>
+      <div><a id="cg" onclick="createModal('cg')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-money fa-3x">&nbsp;</i><br />Cost Guide</span></span></a></div>
+      <div><a id="fi" onclick="createModal('fi')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-plane fa-3x">&nbsp;</i><br />Flight Itinerary</span></span></a></div>
+      <div><a id="pg" onclick="createModal('pg')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-suitcase fa-3x">&nbsp;</i><br />Packing Guide</span></span></a></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body" id="myModalBody"></div>
+    </div>
+  </div>
+</div>
+
+<script language="JavaScript" type="text/javascript">
+  function navigate(button) {
+    var link = button.dataset.href;
+    window.open(link, "_blank");
+  }
+
+  var brochurelinkcodes = {
+    "tr": travelresources,
+    "to": tripoverview,
+    "ts": travelsafety,
+    "cg": costguide,
+    "fi": flightitinerary,
+    "pg": packingguide,
+    "lm": "https://liberty.co1.qualtrics.com/jfe/form/SV_9F5LbHhn4GDY0VT"
+  }
+
+  function createModal(id) {
+    var currentnode = brochurelinkcodes[id];
+
+    if (currentnode) {
+      if(id != "lm") currentnode += "#page=1&view=FitH";
+      else currentnode += "?Trip=" + $("#pagebodycontent div.page-header h3.col-sm-10").text().match(/^(.*)$/m)[0];
+      currentnode = encodeURI(currentnode);
+      document.getElementById("myModalBody").innerHTML = "";
+      var newobject = document.createElement("object");
+      newobject.setAttribute("data", currentnode);
+      //newobject.setAttribute("type", "application/pdf");
+      var newiframe = document.createElement("iframe");
+      newiframe.setAttribute("src", currentnode);
+      newiframe.innerHTML = "This browser does not support PDFs. Please download the PDF to view it: ";
+      var newa = document.createElement("a");
+      newa.setAttribute("href", currentnode);
+      newiframe.appendChild(newa);
+      newobject.appendChild(newiframe);
+      document.getElementById("myModalBody").appendChild(newobject);
+      $("#myModal").modal();
+    }
+  }
+
+  function checkParameter(element) {
+    var parameter = {};
+    var titleElement = $("[id^=h_" + element + "]");
+    var contentElement = $("[id^=id_" + element + "]");
+
+    if (titleElement.length) {
+      parameter.title = $.trim(titleElement.text()).slice(0, -1) + "";
+      parameter.content = $.trim(contentElement.text()) + "";
+      parameter.date = paymentdeadlines.hasOwnProperty(parameter.title) ? paymentdeadlines[parameter.title] ? paymentdeadlines[parameter.title] : "" : "";
+      return parameter;
+    } else {
+      return false;
+    }
+  }
+
+  function expandTable(id) {
+    $("#" + id).siblings("tr").fadeToggle(500);
+  }
+
+  $(document).ready(function() {
+    var countries = {
+      "africa": "24751",
+      "albania": "21716",
+      "austria": "24652",
+      "alaska": "24329",
+      "bosnia": "25386",
+      "cambodia": "21750",
+      "colombia": "24752",
+      "china": "21751",
+      "costa rica": "21752",
+      "atlanta": "23896",
+      "asheville": "23895",
+      "dominican republic": "21754",
+      "denmark": "25390",
+      "ecaudor": "21755",
+      "england": "21756",
+      "uk": "21756",
+      "united kingdom": "21756",
+      "france": "22789",
+      "hockey": "22415",
+      "finland": "22416",
+      "scandinavia": "22416",
+      "honduras": "22790",
+      "italy": "21757",
+      "iceland": "25378",
+      "kosovo": "22791",
+      "ecuador": "21755",
+      "europe": "21757",
+      "germany": "21758",
+      "oberammergau": "21758",
+      "greece": "21759",
+      "guatemala": "21761",
+      "india": "21762",
+      "ireland": "21763",
+      "israel": "21764",
+      "jamaica": "21765",
+      "japan": "21766",
+      "kenya": "21767",
+      "northern ireland": "21768",
+      "papua new guinea": "21769",
+      "ethnos360": "21769",
+      "philadelphia": "24156",
+      "portugal": "21770",
+      "poland": "25379",
+      "romania": "21771",
+      "rwanda": "21772",
+      "south korea": "21773",
+      "spain": "21774",
+      "switzerland": "21775",
+      "thailand": "21776",
+      "growing entrepreneurs international": "21776",
+      "slv": "26168",
+      "brazil": "21777",
+      "haiti": "21778",
+      "nepal": "21781",
+      "nicaragua": "21796",
+      "mexico": "21822",
+      "tanzania": "23902",
+      "jordan": "23903",
+      "jerusalem": "26169",
+      "turkey": "25391",
+      "los angeles": "25388",
+      "ten2": "24665",
+      "togo": "25377",
+      "washington dc": "25387",
+      "domestic": "21753"
+    };
+
+    var normalparameters = [
+      "11016", //LU School/Department
+      "11010", //Course options
+      "11029" //Term
+    ];
+
+    var paymentparameters = [
+      "11032", //CQ Assessment
+      "11019", //Deposit
+      "11020", //Payment 1
+      "11021", //Payment 2
+      "11022", //Payment 3
+      "11023", //Payment 4
+      "11024", //Payment 5
+      "11025" //Final Payment
+    ]
+
+    var total = 0;
+    var tbd = false;
+
+    //ADD FACTS;
+    $(normalparameters).each(function() {
+      var parameter = checkParameter(this);
+      if (parameter) {
+        $("#facts_table").find("tbody").append("\n<tr><td><strong>" + parameter.title + "</strong></td><td>" + parameter.content + "</td></tr>");
+      }
+    });
+
+    //ADD PAYMENTS
+    $(paymentparameters).each(function() {
+      var parameter = checkParameter(this);
+      if (parameter) {
+        if (!Number(parameter.content)) tbd = true;
+        else total += Number(parameter.content);
+        parameter.content = Number(parameter.content) ? "$" + parameter.content + ".00" : parameter.content;
+        $("#payment_table").find("tbody").append("\n<tr><td><strong>" + parameter.title + "</strong></td><td style='width: 120px;'>" + parameter.content + "</td><td><i>" + parameter.date + "</i></td></tr>");
+      }
+    });
+
+    //TOTAL
+    total = tbd ? "TBD" : total ? "$" + total.toFixed(2) : "<i>Payment Information Coming Soon</i>";
+    $("#payment_table").find("tbody").append("\n<tr><td><strong>" + "Total:" + "</strong></td><td colspan='2'><strong>" + total + "</strong></td></tr>");
+
+    //HIDE TABLES INITIALLY
+    // $("#facts_table_title").siblings("tr").hide();
+    //$("#payment_table_title").siblings("tr").hide();
+
+    //STYLE TITLE
+    var title = $("#pagebodycontent div.page-header h3.col-sm-10").text().match(/^(.*)$/m)[0];
+    $("#pagebodycontent div.page-header div h3.col-sm-10").html("<span id='brochure-title'>" + title + "</span>"); //reset title
+
+    //ADD VIDEO
+    if (video) {
+      video = video.replace("watch?v=", "embed/");
+      $(".videoWrapper iframe").attr("src", video);
+    } else {
+      $(".videoWrapper").hide();
+    }
+
+    //ADD DEFAULT HEADER IMAGE AND BACKGROUND IMAGE
+    for (var i in countries) {
+      if (title.toLowerCase().indexOf(i) != -1) {
+        $("#group4").css("background-image", "url(https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=" + countries[i] + ")");
+
+        if (!headerimage) {
+          $("#pagebodycontent div.page-header div h3.col-sm-10").css("background-image", "url(https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=" + countries[i] + ")");
+        }
+        break;
+      };
+    }
+
+    //ADD CUSTOM HEADER IMAGE
+    if (headerimage) {
+      $("#pagebodycontent div.page-header div h3.col-sm-10").css("background-image", "url(https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=" + headerimage + ")");
+    }
+
+    $("#pagebody form div.text-center").each(function() {
+      var newbutton = document.createElement("button");
+      newbutton.innerHTML = "Learn More";
+      newbutton.setAttribute("class", "btn btn-secondary");
+      newbutton.setAttribute("type", "button");
+      newbutton.setAttribute("onclick", "createModal('lm')");
+      if($(this).children("button").length != 0 && displaylearnmorebutton) $(this).append(newbutton);
+    });
+
+    //HIDE DESCRIPTION IF EMPTY
+    if ($("#trip_pitch").text() == String.fromCharCode(160) && !video) {
+      $("#trip-pitch-side").hide();
+      $("#trip-fact-side").css({
+        float: "inherit",
+        margin: "auto"
+      });
+      $("#trip-fact-side").toggleClass("col-sm-5 col-sm-8");
+    }
+
+    //HIDE TITLE
+    if (!displaytitle) $("#pagebodycontent div.page-header h3.col-sm-10").html(" ");
+
+    //HIDE BUTTONS
+    if (displaypaysmall) document.getElementById("donate-pay-button").style.display = "inline-block";
+    if (displaylearnmoresmall) document.getElementById("learn-more").style.display = "inline-block";
+    if (displayapplysmall) document.getElementById("apply-now").style.display = "inline-block";
+
+    //ADD DEFAULT DATES
+    var startDate = new Date($('#pagebody div:nth-child(4) div.table-responsive table tbody tr:nth-child(2) td:nth-child(5) span').text());
+    var endDate = new Date($('#pagebody div:nth-child(4) div.table-responsive table tbody tr:nth-child(2) td:nth-child(6) span').text());
+    var options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    if (startDate != "Invalid Date" && endDate != "Invalid Date") {
+      document.getElementById("tripDates").innerHTML = startDate.toLocaleDateString("en-US", options) + "<br />-<br />" + endDate.toLocaleDateString("en-US", options);
+    }
+
+    //HIDE DATES IF EMPTY
+    if (document.getElementById("tripDates").innerHTML == "&nbsp;") {
+      $("#tripDates").css("display", "none");
+    }
+
+    //SET HREF IF AVAILABLE
+    for (var id in brochurelinkcodes) {
+      if (brochurelinkcodes[id] && id != "lm") {
+        document.getElementById(id).setAttribute("href", "#brochure-links");
+      }
+    }
+
+    //ADD TITLE AND TARGET TO LINKS
+    $("#brochure-links a").each(function() {
+      if ($(this).attr('href') == null) {
+        $(this).attr("title", "Coming Soon");
+      }
+    });
+  });
+</script>

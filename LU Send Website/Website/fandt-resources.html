@@ -1,0 +1,156 @@
+<style type="text/css">
+body {
+    overflow: hidden;
+}
+
+#G5 span.center {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#G5 .fa {
+    opacity: 1;
+    position: initial;
+    color: white;
+    top: auto;
+    left: auto;
+    transform: none;
+    transition: all .5s ease 0s;
+}
+
+.public-page-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: #0a254e;
+}
+
+#pagebodycontentheader {
+    display: none;
+}
+
+#pagefooter {
+    display: none;
+}
+
+#pageheader {
+    display: none;
+}
+
+#pagenav-wrapper {
+    display: none;
+}
+
+#home_button {
+    position: fixed;
+    z-index: 100;
+    top: 10px;
+    left: 10px;
+}
+
+#home_button a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: .95em;
+    color: #ffffff;
+    text-align: center;
+}
+
+#home_button a:hover {
+    color: #858585;
+}
+</style>
+
+<div id="home_button"><a href="/"><i class="fa fa-2x">&nbsp;</i><i aria-hidden="true" class="fa fa-home fa-2x">&nbsp;</i></a></div>
+
+<div id="G5" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21517');">
+    <div id="home_applied" onclick=""><span>Already Applied?</span><a href="/secure/">LIBERTY LOGIN</a><a href="/index.cfm?FuseAction=Security.ExistingUserLogin">NON-LIBERTY LOGIN</a></div>
+
+    <div style="height: 150px; position: relative; width: 100%;">
+        <img class="logo" src="https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21410" alt="LU Send Logo" />
+        <div class="title-title">FACULTY/STAFF<br />RESOURCES</div>
+    </div>
+
+    <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="option option-3" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21518');">
+            <div class="background">
+                <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-globe fa-5x">&nbsp;</i></span>
+                <div class="text">
+                    <div class="title title-other">INDIVIDUAL TRAVEL</div>
+                    <div class="desc">Liberty University faculty/staff should register their international travel with the University.</div>
+                    <a href="https://liberty-sa.terradotta.com/index.cfm?FuseAction=OneStep.Apply&Program_ID=11900" class="link link-other">Register Travel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="option option-1" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21519');">
+            <div class="background">
+                <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-suitcase fa-5x">&nbsp;</i></span>
+                <div class="text">
+                    <div class="title title-other">GSA APP.</div>
+                    <div class="desc">Apply to be a GSA co-leader on one of your school/department's International Short Term Trips.</div>
+                    <a href="https://liberty-sa.terradotta.com/index.cfm?FuseAction=Students.Apply&Program_ID=11967" class="link link-other">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="option option-2" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21520');">
+            <div class="background">
+                <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-plane fa-5x">&nbsp;</i></span>
+                <div class="text">
+                    <div class="title title-other">SHORT TERM INT.</div>
+                    <div class="desc">LU Send works with you to develop the educational, cultural, spiritual, and logistical components of your trip and to ensure exceptional experiences for every Liberty student traveling with the University.</div>
+                    <a href="https://liberty.co1.qualtrics.com/jfe/form/SV_bjDUXq3IcxegfOt" class="link link-other">Submit Proposal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="option option-4" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21521');">
+            <div class="background">
+                <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-car fa-5x">&nbsp;</i></span>
+                <div class="text">
+                    <div class="title title-other">DOMESTIC</div>
+                    <div class="desc">LU Send works with you to develop the educational, cultural, spiritual, and logistical components of your trip and to ensure exceptional experiences for every Liberty student traveling with the University.</div>
+                    <a href="https://liberty.co1.qualtrics.com/jfe/form/SV_bjDUXq3IcxegfOt" class="link link-other">Submit Proposal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  if($("#pagenav a:contains(Logout)").length == 1) {
+    $("#home_applied span").text("Navigation Links");
+    $("#home_applied a:nth-child(2)").text("MY APPLICATIONS");
+    $("#home_applied a:nth-child(2)").attr("href", "/index.cfm?FuseAction=Students.Home&RequiredProfile=1");
+
+    if($("#pagenav a:contains(Administrative)").length == 1) {
+      $("#home_applied a:nth-child(3)").text("ADMINISTRATIVE");
+      $("#home_applied a:nth-child(3)").attr("href", "/index.cfm?FuseAction=Administration.Home&RequiredProfile=1");
+    } else {
+      $("#home_applied a:nth-child(3)").css("display","none");
+    }
+
+    var newlink = document.createElement("a");
+    newlink.setAttribute("href", "/index.cfm?FuseAction=Security.Logout");
+    newlink.innerHTML = "LOGOUT";
+    $("#home_applied").append(newlink);
+  };
+});
+</script>
