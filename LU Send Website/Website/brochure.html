@@ -376,7 +376,8 @@
     };
 
     var normalparameters = [
-      "11016", //LU School/Department
+      "11034", //School
+      "11035", //Department
       "11010", //Course options
       "11029" //Term
     ];
@@ -402,6 +403,19 @@
         $("#facts_table").find("tbody").append("\n<tr><td><strong>" + parameter.title + "</strong></td><td>" + parameter.content + "</td></tr>");
       }
     });
+
+    var locations = [];
+    $("#pagebodycontent div.row div.col-sm-8.col-lg-9 ul li:nth-child(1)").find("span").each(function(){
+        locations.push($(this).text());
+        console.log($(this).text());
+    });
+
+    locations = locations.map(function(cur, i, arr){
+        if(i + 1 === arr.length) return cur;
+        else return " " + cur.slice(0,-1) + " <b>|</b> ";
+    }).join('');
+
+    $("#facts_table").find("tbody").append("\n<tr><td><strong>Locations</strong></td><td>" + locations + "</td></tr>");
 
     //ADD PAYMENTS
     $(paymentparameters).each(function() {

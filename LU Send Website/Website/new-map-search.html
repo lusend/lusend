@@ -268,7 +268,8 @@
   var MAP_TYPE = "Short Term Trips", //programs available in this search
     PARAMETER_IDS = [ //all the parameters available in this search
       "11010", //courses
-      "11016", //schools/departments
+      "11034", //schools
+      "11035", //departments
       "11029", //terms
     ],
     GEN_EDS = ["ENGL 101", "COMS 101", "ENGR 270", "GLST 220", "SCOM 110", "MATH 114", "MATH 115", "MATH 117", "MATH 121", "MATH 122", "MATH 125", "MATH 126", "MATH 128", "MATH 130", "MATH 131", "MATH 132", "MATH 201", "MATH 211", "MATH 217",
@@ -586,6 +587,12 @@
       gestureHandling: 'greedy',
       streetViewControl: false,
       mapTypeControl: false,
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_CENTER
+      },
+      fullscreenControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_CENTER
+      },
       backgroundColor: "#0a254e",
       styles: [{
         "elementType": "labels.icon",
