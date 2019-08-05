@@ -1,1004 +1,990 @@
-<style type="text/css">
-.public-page-content {
+<style>
+  .public-page-content {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
     background: #0a254e;
-}
+  }
 
-#pagebodycontentheader {
+  #pagebodycontentheader {
     display: none;
-}
+  }
 
-#pagenav-wrapper {
+  #pagenav-wrapper {
     display: none;
-}
+  }
 
-#pagefooter {
+  #pagefooter {
     display: none;
-}
+  }
 
-#pageheader {
+  #pageheader {
     display: none;
-}
+  }
 
-#home_button {
+  #home_button {
     position: fixed;
     z-index: 100;
     top: 10px;
     left: 10px;
-}
+  }
 
-#home_button a {
+  #home_button a {
     color: #ffffff;
     text-decoration: none;
     font-weight: bold;
     font-size: .95em;
     color: #ffffff;
     text-align: center;
-}
+  }
 
-@media (min-width: 992px){
-    #div_button_quick_search {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
+  .search-wrapper {
+    font-family: sans-serif;
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    padding: 10px;
+    transform: translateX(-50%);
+    width: auto;
+  }
+
+  .selectize-control,
+  .search-wrapper .select {
+    /* height: 40px; */
+    width: auto;
+    outline: 0 !important;
+  }
+
+  .search-wrapper .select,
+  .search-wrapper .preMadeSubmit,
+  .search-wrapper #searchSubmit {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 6px 2px;
+    height: 34px;
+    width: 24vw;
+    vertical-align: top;
+    outline: 0;
+    border-radius: 13px/50%;
+    transition: all 0.5s ease;
+  }
+
+  .search-wrapper .select {
+    float: left;
+  }
+
+  .search-wrapper #searchSubmit {
+    float: right;
+  }
+
+  .search-wrapper #searchSubmit.focus,
+  .search-wrapper .select.focus {
+    width: 39vw;
+    transition: all 0.5s ease;
+  }
+
+  .selectize-control {
+    /* width: 40% !important; */
+    display: inline-block !important;
+    transition: all 0.5s ease;
+  }
+
+  .search-wrapper .select,
+  .search-wrapper button,
+  .selectize-input {
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.35) !important;
+    z-index: 1;
+  }
+
+  .search-wrapper button.preMadeSubmit {
+    width: 15.66vw;
+    height: 48px;
+    padding: 0;
+  }
+
+  .search-wrapper button.preMadeSubmit:nth-of-type(2) {
+    float: left;
+  }
+
+
+  .search-wrapper button.preMadeSubmit:nth-of-type(4) {
+    float: right;
+  }
+
+  .search-wrapper .preMadeSubmit.focus {
+    width: 25.66vw;
+    transition: all 0.5s ease;
+  }
+
+  .selectize-input {
+    border-radius: 13px/50% !important;
+    text-align: left;
+    overflow: auto !important;
+    max-height: 50px;
+  }
+
+  .selectize-dropdown,
+  .selectize-input {
+    width: 50vw !important;
+    transition: all 0.5s ease;
+  }
+
+  .selectize-input.focus+.selectize-dropdown,
+  .selectize-input.focus {
+    width: 80vw !important;
+    transition: all 0.5s ease;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  #google-map {
+    position: absolute;
+    background: #d6d6d6;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #000000;
+    font-size: 48px;
+    z-index: 0;
+  }
+
+  #map-message {
+    display: none;
+    text-align: center;
+    margin-top: 5px;
+    color: #FFF;
+  }
+
+  #map-program-list {
+    overflow: hidden;
+    height: calc(100% - 10px);
+    padding: 5px;
+  }
+
+  #map-program-list.show {
+    overflow: auto;
+  }
+
+  #programList {
+    box-sizing: content-box;
+    position: absolute;
+    font-family: sans-serif;
+    padding: 10px;
+    left: -20px;
+    height: 70%;
+    top: 50%;
+    background: rgba(255, 255, 255, .95);
+    transform: translateY(-50%);
+    width: 0;
+    z-index: 5;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: all .4s ease 0s;
+  }
+
+  #programList.show {
+    left: 0;
+    width: 50%;
+    transition: all .4s ease 0s;
+  }
+
+  #map-minimize {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    left: 0;
+    outline: 0;
+    top: 50%;
+    margin-left: 30px;
+    height: 30px;
+    padding: 0 15px;
+    text-align: center;
+    font-size: 1.5em;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: #000;
+    background: rgba(255, 255, 255, .95);
+    transform-origin: 0 0;
+    transform: translateY(-50%) rotate(90deg);
+    border: none;
+    z-index: 4;
+    transition: all .4s ease 0s;
+  }
+
+  #map-minimize.show {
+    left: calc(50% + 20px);
+  }
+
+  #programList hr {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border: 1px solid #CCC;
+  }
+
+  @media(min-width: 992px) {
+    #programList.show {
+      width: 30%;
     }
-}
 
+    #map-minimize.show {
+      left: calc(30% + 20px);
+    }
+  }
 </style>
 
+<div id="home_button"><a href="/"><i class="fa fa-2x">&nbsp;</i><i aria-hidden="true" class="fa fa-home fa-2x">&nbsp;</i></a></div>
+<div id="home_applied" onclick=""><span>Already Applied?</span><a href="/secure/">LIBERTY LOGIN</a><a href="/index.cfm?FuseAction=Security.ExistingUserLogin">NON-LIBERTY LOGIN</a></div>
 <div id="mapsearchwrapper">
-    <img id="easter" src="" width="200" height="200" style="z-index: 100; opacity: 0; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);" />
-    <div id="home_applied" onclick=""><span>Already Applied?</span><a href="/secure/">LIBERTY LOGIN</a><a href="/index.cfm?FuseAction=Security.ExistingUserLogin">NON-LIBERTY LOGIN</a></div>
-    <button id="minimize" onclick="changeDisplay('minimize')">Collapse</button>
-    <div id="link">
-        <button id="homeButton" onclick="redirectHome()"><i class="fa">&nbsp;</i><i aria-hidden="true" class="fa fa-home">&nbsp;</i></button>
-        <button id="searchSpan" onclick="changeDisplay('search')">Search</button>
-        <button id="listSpan" onclick="changeDisplay('results')" style="display: none">Results</button>
+  <div id="google-map"></div>
+  <button id="map-minimize" onclick="changeDisplay()">+</button>
+  <div id="programList"></div>
+  <div class="search-wrapper"><select id="map-select1" class="select hide" onchange="changeSearchCriteria(this)">
+      <option value="">All</option>
+    </select>
+    <div id="map-loading">
+      Loading Search...
     </div>
-    <div id="select" class="select"></div>
-    <div id="list" class="list opacity-hidden"></div>
-    <div id="googlemap"></div>
+    <button class="btn btn-primary hide" id="searchSubmit" onclick="createSearchCall()">
+      Submit
+    </button><br />
+    <select id="map-search1" class="search hide" multiple="true" size="1"></select><br />
+    <button class="btn btn-primary hide preMadeSubmit" id="allSubmit" onclick="createSearchCall('all')">
+      All<br />Trips
+    </button>
+    <button class="btn btn-primary hide preMadeSubmit" id="genedSubmit" onclick="createSearchCall('gened')">
+      GenEd<br />Trips
+    </button>
+    <button class="btn btn-primary hide preMadeSubmit" id="g5Submit" onclick="createSearchCall('g5')">
+      G5<br />Trips
+    </button>
+    <div id="map-message">&nbsp;</div>
+  </div>
 </div>
 
 <script>
-    var googleapikey1 = "AIzaSyBcNbHG1bp2W6CQ1j6Ylp-hfv1E7qE6hZk";
-    var gfiveonly = false;
-    var gfive = false;
-    var gfivetripscount = 0;
-    var loaded = 0;
-    var zoom = 6;
-    var width = "90";
-    var totalloadcount = 0;
-    var totalpreload = 14; //number of items to load before loading the map (consists of scripts, buttons, and selects)
-    var readytoloadsearch = false;
-    var maphidden = false;
-    var programs = [];
-    var markers = [];
-    var selectIDList = {};
-    var worldmap, oms, markerClusterer;
-    var arrangement = [0,2,1,3,4,5,6]; //arrangement of fields
-    var parameters_to_search = [
-        "p_11030", //country
-        "p_11010", //courses
-        "p_11016", //schools/departments
-        "p_11029", //terms
-        "p_11031" //region
+  var MAP_TYPE = "Short Term Trips", //programs available in this search
+    PARAMETER_IDS = [ //all the parameters available in this search
+      "11010", //courses
+      "11034", //schools
+      "11035", //departments
+      "11029", //terms
+    ],
+    GEN_EDS = ["ENGL 101", "COMS 101", "ENGR 270", "GLST 220", "SCOM 110", "MATH 114", "MATH 115", "MATH 117", "MATH 121", "MATH 122", "MATH 125", "MATH 126", "MATH 128", "MATH 130", "MATH 131", "MATH 132", "MATH 201", "MATH 211", "MATH 217",
+      "MATH 227", "BIOL 101", "BIOL 102", "BIOL 103", "BIOL 104", "BIOL 203", "BIOL 213", "BIOL 214", "BIOL 215", "BIOL 216", "BIOL 224", "CHEM 105", "CHEM 107", "CHEM 121", "CHEM 122", "ENVR 215", "ENVR 220", "ENVR 221", "PHSC 121", "PHSC 122",
+      "PHSC 210", "PHSC 211", "PHYS 101", "PHYS 103", "PHYS 201", "PHYS 202", "PHYS 231", "PHYS 232", "BUSI 201", "INFT 102", "INFT 103", "INFT 104", "INFT 110", "INFT 126", "INFT 127", "INFT 151", "INFT 152", "INFT 241", "UNIV 101", "INQR 101",
+      "ARTS 209", "ENGL 102", "MUSC 200", "CSIS 110", "CSIS 111", "CSIS 112", "GEOG 200", "HIEU 201", "HIEU 202", "HLTH 216", "HIUS 221", "HIUS 223", "HIUS 222", "HIUS 341", "HIUS 360", "HIUS 380", "HIWD 370", "RSCH 201", "ARTS 205", "ARTS 214",
+      "ENGL 201", "ENGL 202", "ENGL 215", "ENGL 216", "ENGL 221", "ENGL 222", "MUSC 213", "MUSC 314", "MUSC 371", "BIBL 105", "BIBL 110", "EVAN 101", "RLGN 105", "THEO 201", "THEO 202", "APOL 201", "ARTS 105", "CINE 101", "CSTU 101", "CSTU 102",
+      "GLST 290", "MUSC 103", "MUSC 311", "MUSC 312", "MUSC 313", "THEA 101", "YOUT 220", "BUSI 223", "BUSI 240", "ECON 110", "ECON 213", "ECON 214", "GOVT 200", "GOVT 210", "GOVT 220", "PSYC 101", "PSYC 150", "PSYC 210", "SOCI 200", "SOCI 201",
+      "PHIL 201", "BWVW 301", "CINE 340", "CSTU 301", "CSTU 310", "ENGL 405", "ENGL 442", "ENGL 460", "ENGL 462", "ETHM 411", "GEOG 410", "HIEU 466", "HLTH 400", "INDS 499", "MUSC 424", "NASC 315", "PHIL 429", "PHIL 465", "PHIL 468", "PHSC 310",
+      "SPAN 324", "THEO 324", "THEO 340", "CSER"
     ];
 
-    if(gfiveonly){ //if gfive is changed from the get-go, change some things, then only display g5 trips
-        $("#minimize").toggleClass("minimize-hidden");
-        $("#minimize").text("Results");
-        $("#link").toggleClass("short");
-        $("#link").toggleClass("width-hidden");
-        $("#searchSpan").css("display", "none");
-        $("#searchSpan").toggleClass("width-hidden");
-        $("#select").toggleClass("width-hidden");
-        $("#select").toggleClass("opacity-hidden");
-        $("#list").toggleClass("opacity-hidden");
-        $("#list").toggleClass("width-hidden");
-        $("#list").toggleClass("short");
+  var SEARCH_LOAD = 0, //add 1 to SEARCH_LOAD every time api is called before searching
+    SEARCH_LOADED = 0, //loadSearch adds 1 here once an item is loaded
+    MAP_LOAD = 1, //add 1 to MAP_LOAD every time api is called after searching (starts with 1 due to map load)
+    MAP_LOADED = 0; //loadMap adds 1 here once an item is loaded
+    SEARCH_READY = false,
+    PRE_SEARCH = false;
+
+  var SEARCH_CRITERIA = {}, //contains all the searchable criteria
+    SEARCH_RESULTS = {}, //contains all the search results
+    CURRENT_SEARCH_CRITERIA = []; //contains the searchable criteria being used currently
+
+  var API_KEY = "AIzaSyBcNbHG1bp2W6CQ1j6Ylp-hfv1E7qE6hZk", //the google API Key
+    // var API_KEY = "AIzaSyAbmsEtkMyYyjFYiAD4H46rDiayhPFl5Xg", //the google API Key
+    MAX_ZOOM = 9,
+    WORLD_MAP,
+    OMS,
+    MARKER_CLUSTERER;
+
+  function gm_authFailure() {
+    document.getElementById("google-map").style.innerHTML = "Map Unsupported";
+  }
+
+  function changeDisplay(show) {
+    $("#map-minimize").css("display", "block");
+    if (show === undefined) {
+      $("#map-minimize").toggleClass("show");
+      $("#map-minimize").html($("#map-minimize").html() === "+" ? "-" : "+");
+      $("#programList").toggleClass("show");
+      $("#map-program-list").toggleClass("show");
+    } else if (show) {
+      $("#map-minimize").addClass("show");
+      $("#map-minimize").html("-");
+      $("#programList").addClass("show");
+      $("#map-program-list").addClass("show");
+    } else {
+      $("#map-minimize").removeClass("show");
+      $("#map-minimize").html("+");
+      $("#programList").removeClass("show");
+      $("#map-program-list").removeClass("show");
     }
+  }
 
-    $(document).ready(function() { //get the json data from the api
-      if($("#pagenav a:contains(Logout)").length == 1) {
-        $("#home_applied span").text("Navigation Links");
-        $("#home_applied a:nth-child(2)").text("MY APPLICATIONS");
-        $("#home_applied a:nth-child(2)").attr("href", "/index.cfm?FuseAction=Students.Home&RequiredProfile=1");
+  function setMessage(message) {
+    $("#map-message").css("display", "block");
+    $("#map-message").html(message);
+  }
 
-        if($("#pagenav a:contains(Administrative)").length == 1) {
-          $("#home_applied a:nth-child(3)").text("ADMINISTRATIVE");
-          $("#home_applied a:nth-child(3)").attr("href", "/index.cfm?FuseAction=Administration.Home&RequiredProfile=1");
-        } else {
-          $("#home_applied a:nth-child(3)").css("display","none");
+  function composedPath(el) {
+    var path = [];
+    while (el) {
+      path.push(el);
+      if (el.tagName === 'HTML') {
+        path.push(document);
+        path.push(window);
+        return path;
+      }
+      el = el.parentElement;
+    }
+  }
+
+  function createIESupport() {
+    if (!Object.keys) {
+      Object.keys = function(obj) {
+        var keys = [];
+        for (var i in obj) {
+          keys.push(i);
         }
-
-        var newlink = document.createElement("a");
-        newlink.setAttribute("href", "/index.cfm?FuseAction=Security.Logout");
-        newlink.innerHTML = "LOGOUT";
-        $("#home_applied").append(newlink);
+        return keys;
       };
-
-        createIESupport();
-        loadScripts();
-        var string = "";
-        for(var x in parameters_to_search){
-            if(string){
-                string += "," + parameters_to_search[x].substring(2);
-            }else{
-                string = parameters_to_search[x].substring(2);
-            }
-        }
-
-        $.getJSON("//liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchElements&ResponseEncoding=JSON&callBackName=getParameters&jsoncallback=?&param_ids=" + string + "&parameters=yes");
-    });
-
-    function redirectHome(){
-        window.location.replace("/");
     }
 
-    function createIESupport(){
-        if(!Object.keys) {
-            Object.keys = function(obj) {
-                var keys = [];
-                for(var i in obj) {
-                    keys.push(i);
-                }
-
-                return keys;
-            };
+    if (!Object.values) {
+      Object.values = function(obj) {
+        var values = [];
+        for (var i in obj) {
+          values.push(obj[i]);
         }
-
-        if(!Object.values) {
-            Object.values = function(obj) {
-                var values = [];
-                for(var i in obj) {
-                    values.push(obj[i]);
-                }
-
-                return values;
-            };
-        }
+        return values;
+      };
     }
+  }
 
-    function load(name){
-        //console.log(name + " is loaded");
-        loaded++;
+  function filterUnique(val, i, arr) { //filters out any non-unique values from array
+    return arr.map(function(j) {
+      return j.value;
+    }).indexOf(val.value) === i;
+  }
 
-        if(loaded == totalpreload && !readytoloadsearch){ //ensure all scripts are loaded prior to building the map
-            if(!maphidden) buildMap();
-            if(gfiveonly) updateG5();
-        }
+  function isOnId(path, id) {
+    return path.some(function(element) {
+      return element.id === id;
+    })
+  };
 
-        if(readytoloadsearch){
-            var progress = Math.round(loaded / totalloadcount * 100 / 2) + 50;
-            if(progress == 100){
-                document.getElementById("progressbar").style.width = progress + "%";
-                document.getElementById("progressbar").style.background = "#215B9D";
-                var ending = (programs.length == 1) ? "" : "s";
-                var totaltrips = (gfive) ?  gfivetripscount : programs.length;
-                document.getElementById("progressbar").innerHTML = "Finished! (" + totaltrips + " Result" + ending + ")";
-            }else{
-                document.getElementById("progressbar").style.width = progress + "%";
-                document.getElementById("progressbar").style.background = "#215B9D";
-                document.getElementById("progressbar").innerHTML = "Loading... (" + progress + "%)";
-            }
-        }
+  function loadSearch(title) {
+    console.log(title.replace(/^.{1}/g, title[0].toUpperCase()) + " loaded.");
+    if (SEARCH_LOADED + 1 >= SEARCH_LOAD) { //all apis loaded
+      SEARCH_LOADED++;
+      buildOms();
+      buildMarkerClusterer();
+      showSearch();
+      console.log("**Ready to Search**");
+      if (PRE_SEARCH) createSearchCall(PRE_SEARCH);
+    } else { //apis are still needed
+      SEARCH_LOADED++;
     }
+  }
 
-    function changeDisplay(button){
-        if(button == "search"){
-            $("#select").removeClass('opacity-hidden');
-            $("#list").addClass('opacity-hidden');
-            $("#list").removeClass('short');
-            $("#link").removeClass('short');
-            $("#minimize").removeClass('short');
-        }else if(button == "results"){
-            $("#select").addClass('opacity-hidden');
-            $("#list").addClass('short');
-            $("#link").addClass('short');
-            $("#minimize").addClass('short');
-            $("#list").removeClass('opacity-hidden');
-        }else if(button == "minimize"){
-            $("#select").toggleClass('width-hidden');
-            $("#link").toggleClass('width-hidden');
-            $("#list").toggleClass('width-hidden');
-            $("#minimize").toggleClass('minimize-hidden');
-            if($("#list").hasClass('short')) $("#minimize").toggleClass('short');
-            if($("#minimize").text() == "Collapse"){
-                $("#minimize").text("Search / Results");
-            }else{
-                $("#minimize").text("Collapse");
-            }
-        }
+  function loadMap(title, searchReady) {
+    if (searchReady) SEARCH_READY = true;
+    console.log(title.replace(/^.{1}/g, title[0].toUpperCase()) + " loaded.");
+    if (MAP_LOADED + 1 >= MAP_LOAD && SEARCH_READY) {
+      MAP_LOADED++;
+      SEARCH_READY = false;
+      clearMap();
+      addMarkers();
+      var programText = SEARCH_RESULTS.total === 1 ? "Program" : "Programs";
+      setMessage("<b>" + SEARCH_RESULTS.total + "</b> " + programText);
+      addList();
+      changeDisplay(true);
+    } else {
+      MAP_LOADED++;
     }
+  }
 
-    function loadScripts() {
-        totalloadcount += 5;
-
-        var script0 = document.createElement("script");
-        script0.type = "text/javascript";
-        script0.onload = function() { load("bootstrap select"); }
-        script0.src = "//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js";
-        document.body.appendChild(script0);
-
-        var script1 = document.createElement("script");
-        script1.type = "text/javascript";
-        script1.onload = function() { load("map script"); }
-        script1.src = "//maps.googleapis.com/maps/api/js?key=" + googleapikey1 + "";
-        document.body.appendChild(script1);
-
-        var script2 = document.createElement("script");
-        script2.type = "text/javascript";
-        script2.onload = function() { load("marker clusterer"); }
-        script2.src = "//developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js";
-        document.body.appendChild(script2);
-
-        var script3 = document.createElement("script");
-        script3.type = "text/javascript";
-        script3.onload = function() { load("marker spiderfier"); }
-        script3.src = "//cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js";
-        document.body.appendChild(script3);
-
-
-        var link0 = document.createElement("link");
-        link0.rel = "stylesheet";
-        link0.type = "text/css";
-        link0.onload = function() { load("selectize stylesheet"); }
-        link0.href = "//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css";
-        document.getElementsByTagName("head")[0].appendChild(link0);
+  function loadScript(url, type, loadMessage) {
+    SEARCH_LOAD++;
+    var item = document.createElement(type);
+    item.onload = function() {
+      loadSearch(loadMessage);
     }
-
-    function gm_authFailure() {
-        document.getElementById("googlemap").style.innerHTML = "Map Unsupported";
-        maphidden = true;
+    if (type === "script") {
+      item.src = url;
+      item.type = "text/javascript";
+      item.defer = true;
+      item.async = true;
+    } else if (type === "link") {
+      item.rel = "stylesheet";
+      item.type = "text/css";
+      item.href = url;
     }
+    document.getElementsByTagName("head")[0].appendChild(item);
+  }
 
-    function _cb_getParameters(data){
-        document.getElementById("select").innerHTML = ""; //clear loading image
+  function encodeSearchValue(value) {
+    return encodeURIComponent(value).replace(/"/g, '%22').replace(/'/g, '%27') + "%7F";
+  }
 
-        var div = document.createElement("div");
-        div.id = "instructions";
-        div.innerHTML = "<strong>Use the filters below to search for any <i>LU Send Short Term Trips</i></strong>";
-        div.style.width = width + "%";
-        div.style.margin = "auto auto 10px auto";
-        div.style.textAlign = "center";
-        div.style.fontSize = "16px";
-        document.getElementById("select").appendChild(div);
-        var id = 1;
-        for(var i in data.ELEMENT){
-            if(parameters_to_search.indexOf(data.ELEMENT[i].FORM_NAME) >= 0){
-                createSelect(Object.values(data.ELEMENT[i].OPTIONS.OPTION), id, data.ELEMENT[i].DISPLAY_NAME, data.ELEMENT[i].FORM_NAME, data.ELEMENT[i].PARAM_TYPE); //use keys map instead of values to support IE
-                id ++;
-            }
-        }
-        createSubmit();
-    }
+  function createSearchCall(preMadeClick) {
+    setMessage("<i>Searching...</i>");
 
-    function hide(){
-        document.getElementById("easter").style.display = "none";
-    }
+    var link = "https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=getSearch&jsoncallback=?";
+    var customLink = false;
+    var params = "";
+    var selectionArray = [{
+      id: "p_11009",
+      type: "SELCT",
+      value: encodeSearchValue(MAP_TYPE)
+    }];
 
-    function showMoreOptions() {
-        $("#div4").toggle(1000);
-        $("#div5").toggle(1000);
-        if($("#showmoreoptions").text() != "See More Search Options") {
-            $("#showmoreoptions").html("See More Search Options");
-        }else {
-            $("#showmoreoptions").html("See Fewer Search Options");
-        }
-    }
+    if (preMadeClick === undefined) {
+      $("#map-search1 option:selected").each(function() {
+        var index = CURRENT_SEARCH_CRITERIA.map(function(i) {
+          return i.value;
+        }).indexOf($(this).val());
+        var meta = SEARCH_CRITERIA[CURRENT_SEARCH_CRITERIA[index].optgroup];
+        var isParameter = meta.hasOwnProperty("type");
 
-    function createSelect(options, search_id, display_name, form_name, param_type){
-        totalloadcount ++;
+        if (!isParameter) meta.type = "";
 
-        var div = document.createElement("div");
-        div.id = "div" + search_id;
-        div.style.width = width + "%";
-        div.style.margin = "auto auto 10px auto";
-        document.getElementById("select").appendChild(div);
-
-        var select = document.createElement("select");
-        select.id = "select" + search_id;
-        select.multiple = true;
-        div.appendChild(select);
-
-        if(select.id == "select5") {
-            var div2 = document.createElement("div");
-            div2.innerHTML = "See More Search Options";
-            div2.id = "showmoreoptions"
-            div2.style.fontStyle = "italic";
-            div2.style.textAlign = "center";
-            div2.style.cursor = "pointer";
-            div2.onclick = showMoreOptions;
-            div2.style.width = width + "%";
-            div2.style.margin = "auto auto 10px auto";
-            document.getElementById("select").appendChild(div2);
-        }
-
-        if(select.id == "select4" || select.id == "select5") {
-            div.style.display = "none";
-            div.style.zIndex = "100";
-        }
-
-        selectIDList[select.id] = {form_name: form_name, param_type: param_type};
-
-        $("#" + select.id).selectize({
-            maxItems: 1000,
-            valueField: 'VALUE',
-            searchField: 'NAME',
-            labelField: 'NAME',
-            placeholder: display_name,
-            options: options,
-            plugins: ["remove_button"]
+        selectionArray.push({
+          id: meta.id,
+          value: encodeSearchValue($(this).val()),
+          type: meta.type
         });
-
-        $("#select3-selectized").keyup(function(){
-            if(this.value.toLowerCase() == "garbanzo daddy"){
-                console.log("Easter Egg Found! Image loading...");
-                var pic = new Image();
-
-                pic.onload = function(){
-                    document.getElementById("easter").style.opacity = "1";
-                    document.getElementById("easter").src = pic.src;
-                    setTimeout(hide, 20000);
-                }
-                pic.src = "https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22071";
-            }
-        });
-
-        load(select.id);
+      });
+    } else {
+      if (preMadeClick === "gened") {
+        for (var gened in GEN_EDS) {
+          selectionArray.push({
+            id: "p_11010",
+            value: encodeSearchValue(GEN_EDS[gened]),
+            type: "MULTI"
+          })
+        }
+      } else if (preMadeClick === "g5") {
+        selectionArray.push({
+          id: "programName",
+          value: "G5",
+          type: ""
+        })
+      } else if (preMadeClick !== "all") {
+        customLink = preMadeClick;
+      }
     }
 
-    function createSubmit(){
-        totalloadcount += 4;
+    if (!customLink) {
+      selectionArray = selectionArray.sort(function(a, b) {
+        if (a.id.toLowerCase() < b.id.toLowerCase()) return -1;
+        if (a.id.toLowerCase() > b.id.toLowerCase()) return 1;
+        return 0;
+      });
 
-        //arrange fields accordingly
-        var wrapper = $('#select');
-        var items = wrapper.children();
-        wrapper.append($.map(arrangement, function(v){ return items[v]; }));
+      var firstOfType = true;
+      for (var index = 0; index < selectionArray.length; index++) {
+        var current = selectionArray[index];
+        var next = selectionArray[index + 1];
 
-        //create search buttons
-        var div = document.createElement("div");
-        div.id = "div_button_quick_search";
-        div.style.width = width + "%";
-        div.style.zIndex = "-1";
-        div.style.margin = "auto auto 10px auto";
-        document.getElementById("select").appendChild(div);
+        var atEnd = index + 1 >= selectionArray.length; //there is no next index
 
-        var button1 = document.createElement("button");
-        button1.id = "all";
-        button1.className = "btn btn-primary col-sm-12 col-xs-12";
-        button1.style.margin = "auto 10px 10px auto";
-        button1.style.display = "inline-block";
-        button1.style.float = "left";
-        button1.innerHTML = "All Trips";
-        div.appendChild(button1);
-        button1.onclick = updateAll;
-        load("All button");
-
-        var button2 = document.createElement("button");
-        button2.id = "g5";
-        button2.className = "btn btn-primary col-sm-12 col-xs-12";
-        button2.style.margin = "auto 10px 10px auto";
-        button2.style.display = "inline-block";
-        button2.innerHTML = "G5 Trips";
-        div.appendChild(button2);
-        button2.onclick = updateG5;
-        load("G5 button");
-
-        var button3 = document.createElement("button");
-        button3.id = "gened";
-        button3.className = "btn btn-primary col-sm-12 col-xs-12";
-        button3.style.margin = "auto auto 10px auto";
-        button3.style.float = "right";
-        button3.style.display = "inline-block";
-        button3.innerHTML = "General Education Trips";
-        div.appendChild(button3);
-        button3.onclick = updateGenEd;
-        load("Gened button");
-
-        var progress0 = document.createElement("div");
-        progress0.id = "progressbarwrapper";
-        progress0.className = "progress";
-        progress0.style.margin ="auto auto 10px auto";
-        progress0.style.display = "none";
-        progress0.style.width = width + "%";
-        document.getElementById("select").appendChild(progress0);
-
-        var progress1 = document.createElement("div");
-        progress1.id = "progressbar";
-        progress1.role = "progressbar";
-        progress1.className = "progress-bar";
-        progress1.style.width = "0%";
-        progress1.innerHTML = 0;
-        progress0.appendChild(progress1);
-        load("progress bar");
-
-        var button = document.createElement("button");
-        button.id = "submit";
-        button.className = "btn btn-primary";
-        button.style.margin = "auto auto 10px auto";
-        button.style.display = "block";
-        button.style.width = width + "%";
-        button.innerHTML = "Submit";
-        document.getElementById("select").appendChild(button);
-        button.onclick = updateSearch;
-        load("submit");
-    }
-
-    function updateGenEd(){
-        readytoloadsearch = true;
-        gfive = false;
-        gfivetripscount = 0;
-
-        if(!maphidden) clearMap();
-
-        totalloadcount ++;
-        load("progress bar view");
-        document.getElementById("progressbarwrapper").style.margin = "auto auto 10px auto";
-        document.getElementById("progressbarwrapper").style.display = "block";
-        document.getElementById("progressbarwrapper").style.width = width + "%";
-        document.getElementById("progressbar").style.width = "0%";
-        document.getElementById("progressbar").style.background = "#215B9D";
-        document.getElementById("progressbar").innerHTML = "Loading... (0%)";
-
-        $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=useData&jsoncallback=?&params=p_11009=Short%20Term%20Trips%7F|p_11009_t=SELCT|p_11010=BIBL%20105%7F%2CBIBL%20110%7F%2CENGL%20102%7F%2CEVAN%20101%7F%2CPSYC%20101%7F%2CPHIL%20201%7F%2CBIOL%20101%7F%2CCSER%7F%2CPSYC%20210%7F%2CTHEO%20201%7F%2CTHEO%20202%7F|p_11010_t=MULTI|p_11010_t=MULTI|p_11010_t=MULTI|p_11010_t=MULTI|p_11010_t=MULTI");
-    }
-
-    function updateG5(){
-        readytoloadsearch = true;
-        gfive = true;
-        gfivetripscount = 0;
-
-        if(!maphidden) clearMap();
-
-        totalloadcount ++;
-        load("progress bar view");
-        document.getElementById("progressbarwrapper").style.margin = "auto auto 10px auto";
-        document.getElementById("progressbarwrapper").style.display = "block";
-        document.getElementById("progressbarwrapper").style.width = width + "%";
-        document.getElementById("progressbar").style.width = "0%";
-        document.getElementById("progressbar").style.background = "#215B9D";
-        document.getElementById("progressbar").innerHTML = "Loading... (0%)";
-
-        $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=useData&jsoncallback=?&params=p_11009=Short%20Term%20Trips%7F|p_11009_t=SELCT&country=Colombia%7F");
-    }
-
-    function updateAll(){
-        readytoloadsearch = true;
-        gfive = false;
-        gfivetripscount = 0;
-
-        if(!maphidden) clearMap();
-
-        totalloadcount ++;
-        load("progress bar view");
-        document.getElementById("progressbarwrapper").style.margin = "auto auto 10px auto";
-        document.getElementById("progressbarwrapper").style.display = "block";
-        document.getElementById("progressbarwrapper").style.width = width + "%";
-        document.getElementById("progressbar").style.width = "0%";
-        document.getElementById("progressbar").style.background = "#215B9D";
-        document.getElementById("progressbar").innerHTML = "Loading... (0%)";
-
-        $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=useData&jsoncallback=?&params=p_11009=Short%20Term%20Trips%7F|p_11009_t=SELCT");
-    }
-
-    function updateSearch(){
-        //console.clear();
-        readytoloadsearch = true;
-        gfive = false;
-        gfivetripscount = 0;
-
-        if(!maphidden) clearMap();
-
-        totalloadcount ++;
-        load("progress bar view");
-        document.getElementById("progressbarwrapper").style.margin = "auto auto 10px auto";
-        document.getElementById("progressbarwrapper").style.display = "block";
-        document.getElementById("progressbarwrapper").style.width = width + "%";
-        document.getElementById("progressbar").style.width = "0%";
-        document.getElementById("progressbar").style.background = "#215B9D";
-        document.getElementById("progressbar").innerHTML = "Loading... (0%)";
-
-        var link = "https://" + "liberty-sa.terradotta.com" + "/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=useData&jsoncallback=?&params=p_11009=Short%20Term%20Trips%7F|p_11009_t=SELCT";
-        var params = "";
-        var region = "";
-        var country = "";
-        var term = "";
-        var firstTime = true;
-        var paramsending = "";
-        var showAll = false;
-
-        for(var id in selectIDList){
-            var currentselect = selectIDList[id];
-            $("#" + id + " option:selected").each(function(){
-                if($(this).val() != ""){
-                    if(currentselect.form_name == "p_11031"){ //get regions
-                        region = (region == "") ? "&region=" : region + "%2C";
-                        region += encodeURIComponent($(this).val()) + "%7F";
-                    }else if(currentselect.form_name == "p_11030"){ //get countries
-                        country = (country == "") ? "&country=" : country + "%2C";
-                        country += encodeURIComponent($(this).val()) + "%7F";
-                    }else{ //all other parameters
-                        if(firstTime){ //generate params ending
-                            firstTime = false;
-                            paramsending = "|" + currentselect.form_name + "_t=" + currentselect.param_type;
-                        }
-                        params = (params == "") ? "|" + currentselect.form_name + "=" : params.match(/_t=.{5}$/gi) ? params + "|" + currentselect.form_name + "=" : params + "%2C";
-                        params += encodeURIComponent($(this).val()) + "%7F";
-                    }
-                }else{
-                    showAll = true; //'Any' option is an empty string, hence this variable
-                }
-            });
-
-            params += paramsending;
-            paramsending = "";
-            firstTime = true; //each run through needs a new parameter ending to dictate whether or not it's multi or single select, hence this variable
+        if (current.type !== "") { //parameter
+          if (params === "") params += "&params="; //add if first ever parameter
+          if (firstOfType) { //new parameter found
+            if (params !== "&params=") params += "|"; //add pipe character if not first ever parameter
+            params += current.id + "=" + current.value;
+          } else params += "," + current.value; //add value
+          if ((!atEnd && next.id != current.id) || atEnd) params += "|" + current.id + "_t=" + current.type; //end parameter with type
+        } else { //other
+          if (firstOfType) link += "&" + current.id + "=" + current.value; //add value and id
+          else link += "," + current.value; //just add value
         }
 
-        link += params + region + country;
-        totalloadcount ++;
+        if (!atEnd && current.id !== next.id) firstOfType = true; //set firstOfType
+        else firstOfType = false;
+      }
 
-        if(params != "" || region != "" || country != "" || term != "" || showAll){
-            $.getJSON(link);
-        }else{
-            checkLoaded(true);
-        }
+      SEARCH_RESULTS.link = link + params;
+    } else {
+      SEARCH_RESULTS.link = customLink;
     }
 
-    function _cb_useData(data){
-        load("search results");
-        //resets load and total count for search
-        loaded = 0;
-        totalloadcount = 0;
+    MAP_LOAD++;
+    $.getJSON(SEARCH_RESULTS.link);
+  }
 
-        programs = [];
-        if(data.RECORDCOUNT == 0) checkLoaded(true); else populatePrograms(data);
-        addCapitals();
-    }
-
-    function populatePrograms(data) {
-        var iterations = data.ROWCOUNT;
-        if(!Array.isArray(data.PROGRAM) && iterations != 1) data.PROGRAM = Object.values(data.PROGRAM);
-
-        totalloadcount += data.ROWCOUNT * 2;
-
-        for (var i = 0; i < iterations; i++) {
-            var prevProgram = "";
-            var crntProgram = (data.ROWCOUNT == 1) ? data.PROGRAM : data.PROGRAM[i];
-            if (i != 0) prevProgram = data.PROGRAM[i - 1]; //assigns a value for the previous trip if it exists
-            if (crntProgram.PROGRAM_ID == prevProgram.PROGRAM_ID) { //if the previous trip is the same trip just different location, just add the location
-                var location = {};
-                var program = programs[programs.length - 1];
-                var country = {};
-
-                location.city = crntProgram.PROGRAM_CITY;
-                location.country = crntProgram.PROGRAM_COUNTRY;
-                location.region = crntProgram.PROGRAM_REGION;
-                location.latitude = crntProgram.PROGRAM_LATITUDE;
-                location.longitude = crntProgram.PROGRAM_LONGITUDE;
-                country.latitude = null;
-                country.longitude = null;
-                country.capital = null;
-                country.region = null;
-                country.unique = null;
-                if (!(crntProgram.PROGRAM_COUNTRY in program.countries)) {
-                    country.unique = checkUniqueByCountry(crntProgram.PROGRAM_COUNTRY);
-                    program.countries[crntProgram.PROGRAM_COUNTRY] = country;
-                    country.region = crntProgram.PROGRAM_REGION;
-                    load(location.country);
-                } else {
-                    load(location.country + "(another location)");
-                    load(location.country + "(no capital needed)");
-                }
-
-                program.locations.push(location);
-                programs[programs.length - 1] = program;
-            } else { //adds the trip details and the location
-                var program = {};
-                var location = {};
-                var country = {};
-                program.id = crntProgram.PROGRAM_ID;
-                program.name = crntProgram.PROGRAM_NAME;
-                program.name = program.name.replace(/^LU\sSend\s\-\s|^LU\sSend\sDomestic\s\-\s/gi, "");
-                location.city = crntProgram.PROGRAM_CITY;
-                location.country = crntProgram.PROGRAM_COUNTRY;
-                location.region = crntProgram.PROGRAM_REGION;
-                location.latitude = crntProgram.PROGRAM_LATITUDE;
-                location.longitude = crntProgram.PROGRAM_LONGITUDE;
-                country.latitude = null;
-                country.longitude = null;
-                country.capital = null;
-                country.region = crntProgram.PROGRAM_REGION;
-                country.unique = checkUniqueByCountry(crntProgram.PROGRAM_COUNTRY);
-
-                program.countries = {};
-                program.countries[crntProgram.PROGRAM_COUNTRY] = country;
-                load(location.country);
-
-                if(program.name.substring(0,2) == "G5"){
-                    gfivetripscount += 1;
-                }
-
-                program.locations = [];
-                program.locations.push(location);
-                programs.push(program);
-            }
-        }
-    }
-
-    function checkUniqueByCountry(crntcountry){
-        for(program in programs){
-            for(prevcountry in programs[program].countries){
-                if(prevcountry == crntcountry){
-                    programs[program].countries[prevcountry].unique = false;
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    function addCapitals() {
-        var link = "//" + "pcbowers.com/apis/countries/1.1/?jsoncallback=?&callback=useCapitals&country=";
-        var countrylist = "";
-        for(var program in programs){
-            for(var country in programs[program].countries){
-                countrylist = (countrylist == "") ? "" : countrylist + ",";
-                countrylist += encodeURIComponent(country);
-            }
-            var testlink = link + countrylist;
-            if(testlink.length > 1500) { //max url length
-                countrylist = "";
-                $.getJSON(testlink);
-            }
-        }
-
-        if(countrylist != ""){
-            $.getJSON(link + countrylist);
-        }
-    }
-
-    function useCapitals(data) {
-        var id = 0;
-        for(var program in programs){
-            for(var country in programs[program].countries){
-                if(programs[program].countries[country].capital != null){
-                    continue;
-                }
-                programs[program].countries[country].capital = data[id].capital;
-                programs[program].countries[country].longitude = data[id].lng;
-                programs[program].countries[country].latitude = data[id].lat;
-                load(data[id].capital);
-                id++;
-                if(data[id] == undefined) break; //if no more data, stop
-            }
-            if(data[id] == undefined) break; //if no more data, stop
-        }
-
-        checkLoaded();
-    }
-
-    function checkLoaded(empty){
-        if (empty) {
-            document.getElementById("progressbar").innerHTML = "No Results";
-            document.getElementById("progressbar").style.width = "100%";
-            document.getElementById("progressbar").style.background = "orange";
-            hideList();
-        }else if(loaded == totalloadcount){
-            if(!maphidden) addMarkers();
-            createList();
-            if(!gfiveonly) changeDisplay('results');
-        }else{
-            document.getElementById("progressbar").innerHTML = "Failed! (0%)";
-            document.getElementById("progressbar").style.width = "100%";
-            document.getElementById("progressbar").style.background = "red";
-            hideList();
-        }
-    }
-
-    function buildMap() {
-        totalloadcount ++;
-        var mapoptions = {
-            center: new google.maps.LatLng(34.033333, -6.85),
-            zoom: 2,
-            maxZoom: zoom,
-            minZoom: 1,
-            mapTypeId: google.maps.MapTypeId.HYBRID,
-            gestureHandling: 'greedy',
-            streetViewControl: false,
-            mapTypeControl: false,
-            backgroundColor: "#0a254e",
-            styles: [{
-                "elementType": "labels.icon",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#616161"
-                }]
-            }, {
-                "elementType": "labels.text.stroke",
-                "stylers": [{
-                    "color": "#f5f5f5"
-                }]
-            }, {
-                "featureType": "administrative",
-                "elementType": "geometry",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "administrative.country",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                    "color": "#c4c4c4"
-                }, {
-                    "visibility": "on"
-                }]
-            }, {
-                "featureType": "administrative.land_parcel",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "administrative.neighborhood",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "poi",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "poi.park",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#9e9e9e"
-                }]
-            }, {
-                "featureType": "road",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "road",
-                "elementType": "labels",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "road",
-                "elementType": "labels.icon",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "transit",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "water",
-                "elementType": "labels.text",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, ]
-        };
-
-        worldmap = new google.maps.Map(document.getElementById("googlemap"), mapoptions);
-        oms = buildOms();
-        markerClusterer = buildMarkerClusterer();
-        load("map");
+  function _cb_getSearch(data) {
+    var total = data.ROWCOUNT;
+    var verbiage = data.SEARCHVERBIAGE.replace(/(You searched for )Outgoing (.*), sorted by <b> Program Name ,  Program City ,  Program Country ,  Program Region <\/b> in <b>ascending<\/b> order./g, "$1$2");
+    var actualTotal = data.RECORDCOUNT;
+    if (total > 1) data = data.PROGRAM;
+    else data = {
+      1: data.PROGRAM
     };
 
-    function buildOms() {
-        var omsoptions = {
-            markersWontMove: true,
-            markersWontHide: true,
-            basicFormatEvents: true,
-            keepSpiderfied: true,
-            circleSpiralSwitchover: 9
-        };
+    manipulateSearchResults(data, actualTotal, verbiage);
+    loadMap(verbiage + '(' + SEARCH_RESULTS.link + ')', true);
+  }
 
-        return new OverlappingMarkerSpiderfier(worldmap, omsoptions);
+  function loadScripts() {
+    loadScript("https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js", "script", "selectize script");
+    loadScript("https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css", "link", "selectize stylesheet");
+    loadScript("https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&callback=buildMap", "script", "map script");
+    loadScript("https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer_compiled.js", "script", "marker clusterer script");
+    loadScript("https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js", "script", "marker spiderfier script");
+  }
+
+  function changeSearchCriteria(element) {
+    var selectize = $("#map-search1").selectize(CURRENT_SEARCH_CRITERIA)[0].selectize;
+    setSearchCriteria(element.value);
+    selectize.clear();
+    selectize.clearOptions();
+    selectize.addOption(CURRENT_SEARCH_CRITERIA);
+    selectize.refreshOptions(CURRENT_SEARCH_CRITERIA);
+    var type = element.value !== "" ? element.value + " " : "Any Trips";
+    $(".selectize-input input[placeholder]").attr('placeholder', 'Search For ' + type);
+  }
+
+  function setSearchCriteria(groupChosen) {
+    CURRENT_SEARCH_CRITERIA = [];
+    for (var group in SEARCH_CRITERIA) {
+      group = groupChosen || group; //set group to chosen group if necessary
+      CURRENT_SEARCH_CRITERIA = CURRENT_SEARCH_CRITERIA.concat(SEARCH_CRITERIA[group].data);
+      if (groupChosen !== undefined && groupChosen !== "") break; //break loop if any isn't chosen
     }
+  }
 
-    function buildMarkerClusterer(){
-        var mcoptions = {
-            imagePath: "//developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-            maxZoom: zoom - 1
-        }
-        return new MarkerClusterer(worldmap, [], mcoptions);
+  function buildOms() {
+    var omsoptions = {
+      markersWontMove: true,
+      markersWontHide: true,
+      keepSpiderfied: true
+    };
+
+    OMS = new OverlappingMarkerSpiderfier(WORLD_MAP, omsoptions);
+  }
+
+  function buildMarkerClusterer() {
+    var mcoptions = {
+      imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+      maxZoom: MAX_ZOOM - 1
     }
+    MARKER_CLUSTERER = new MarkerClusterer(WORLD_MAP, [], mcoptions);
+  }
 
-    function clearMap() {
-        for(i in markers){
-            markers[i].setMap(null);
-        }
-        oms.clearMarkers();
-        markerClusterer.clearMarkers();
-        markers = [];
-        markers.length = 0;
+
+  function buildMap() {
+    var mapoptions = {
+      center: new google.maps.LatLng(34.033333, -6.85),
+      zoom: 2,
+      maxZoom: MAX_ZOOM,
+      minZoom: 1,
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+      gestureHandling: 'greedy',
+      streetViewControl: false,
+      mapTypeControl: false,
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_CENTER
+      },
+      fullscreenControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_CENTER
+      },
+      backgroundColor: "#0a254e",
+      styles: [{
+        "elementType": "labels.icon",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "elementType": "labels.text.fill",
+        "stylers": [{
+          "color": "#616161"
+        }]
+      }, {
+        "elementType": "labels.text.stroke",
+        "stylers": [{
+          "color": "#f5f5f5"
+        }]
+      }, {
+        "featureType": "administrative",
+        "elementType": "geometry",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.country",
+        "elementType": "geometry.stroke",
+        "stylers": [{
+          "color": "#c4c4c4"
+        }, {
+          "visibility": "on"
+        }]
+      }, {
+        "featureType": "administrative.land_parcel",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "administrative.neighborhood",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "poi",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "poi.park",
+        "elementType": "labels.text.fill",
+        "stylers": [{
+          "color": "#9e9e9e"
+        }]
+      }, {
+        "featureType": "road",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "transit",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, {
+        "featureType": "water",
+        "elementType": "labels.text",
+        "stylers": [{
+          "visibility": "off"
+        }]
+      }, ]
+    };
+
+    WORLD_MAP = new google.maps.Map(document.getElementById("google-map"), mapoptions);
+    loadMap("map");
+  }
+
+  function clearMap() {
+    OMS.removeAllMarkers();
+    MARKER_CLUSTERER.clearMarkers();
+  }
+
+  function addList() {
+    $("#programList").html("<div id='map-program-list'></div>");
+    $("#map-program-list").append("<div style='max-height: 100px; overflow: auto; font-size: 1.1em; text-align: center;'>" + SEARCH_RESULTS.verbiage + "</div>");
+    $("#map-program-list").append("<div style='font-size: 0.9em; text-align: center; margin-top: 5px;'>" + $("#map-message").html() + " Found</div>");
+    var currentId = 0;
+    for (var i in SEARCH_RESULTS.data) {
+      var program = SEARCH_RESULTS.data[i];
+      var link = "https://liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=" + program.id;
+      var mapMarkerButton = "<i class='fa fa-search-plus' aria-hidden='true' style='cursor: pointer;' onclick='goToMarker(" + currentId + ")' title='View Marker'>&nbsp;</i>";
+      $("#map-program-list").append("<hr /><div style='text-align: left;'>" + mapMarkerButton + "<b><a style='text-decoration: none' href='" + link + "' target='_blank'>" + program.value + "</a></b></div>");
+      for (var j in program.locations) {
+        currentId++;
+      }
     }
+  }
 
-    function addMarkers() {
-        var infowindow = new google.maps.InfoWindow();
-        var bounds = new google.maps.LatLngBounds();
+  function goToMarker(id) {
+    WORLD_MAP.setZoom(MAX_ZOOM);
+    WORLD_MAP.setCenter(OMS.getMarkers()[id].getPosition());
+    OMS.getMarkers()[id].set('spiderfied', true);
+    setTimeout(function() {
+      google.maps.event.trigger(OMS.getMarkers()[id], 'click')
+    }, 150);
+    changeDisplay();
+  }
 
-        for (var i in programs) {
-            if(programs[i].name.substring(0,2) != "G5" && gfive){
-                continue;
-            }
+  function addMarkers() {
+    var infowindow = new google.maps.InfoWindow();
+    for (var i in SEARCH_RESULTS.data) {
+      for (var j in SEARCH_RESULTS.data[i].locations) {
+        var location = SEARCH_RESULTS.data[i].locations[j];
 
-            for (var k in programs[i].countries) { //currently placing markers for countries, not locations
-                var coordinates = programs[i].countries[k];
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(coordinates.latitude, coordinates.longitude),
-                });
-
-                marker.set('popup', addProgramHtml(programs[i]));
-                marker.set('programid', i);
-                marker.set('countryid', k);
-                marker.set('title', programs[i].name);
-                marker.set('unique', programs[i].countries[k].unique);
-
-                if(!programs[i].countries[k].unique) {
-                    marker.setLabel("+");
-                    marker.set('spiderfied', false);
-                    marker.set("popup", "<strong>Click to See More</strong>");
-                }
-
-                oms.addMarker(marker);
-                markerClusterer.addMarker(marker);
-
-                google.maps.event.addListener(marker, "mouseover", function() {
-                    infowindow.setContent(this.get('popup'));
-                    infowindow.open(worldmap, this);
-                });
-
-                google.maps.event.addListener(marker, "mousedown", function() {
-                    infowindow.setContent(this.get('popup'));
-                    infowindow.open(worldmap, this);
-                    editMarkerVisibility(this, true);
-                });
-
-                bounds.extend(marker.getPosition());
-                markers.push(marker);
-            }
-        }
-
-        worldmap.fitBounds(bounds); //get map to show all markers and no more/no less
-
-        google.maps.event.addListener(worldmap, "click", function(event) {
-            infowindow.close();
-            for(var i in markers){
-                editMarkerVisibility(markers[i], false);
-            }
-            oms.unspiderfy();
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(location.latitude, location.longitude),
         });
-    }
 
-    function editMarkerVisibility(marker, markerClick){
-        if(oms.markersNearMarker(marker, true).length){
-            var cluster = oms.markersNearMarker(marker);
-            cluster.push(marker);
-            for(i in cluster){
-                if(cluster[i].get("spiderfied") && !markerClick){
-                    cluster[i].setLabel("+");
-                    cluster[i].set("spiderfied", false);
-                    cluster[i].set("popup", "<strong>Click to See More</strong>");
-                }else if(markerClick){
-                    cluster[i].setLabel("");
-                    cluster[i].set("spiderfied", true);
-                    cluster[i].set("popup", addProgramHtml(programs[cluster[i].get("programid")]));
-                }
-            }
-        }
-    }
+        marker.set('popup', addProgramHtml(SEARCH_RESULTS.data[i], location));
+        marker.set('program_index', i);
+        marker.set('location_index', j);
+        marker.set('unique', location.unique);
+        marker.set('title', SEARCH_RESULTS.data[i].value);
 
-    function addProgramHtml(program) {
-        var headerhtml = "<div style='overflow:hidden; white-space:nowrap;' class='text-center'><strong>" + program.name + "</strong></div>";
-
-        var bodyhtml = "<ul>";
-        for (var country in program.countries) {
-            bodyhtml += "<li>" + country + " (" + program.countries[country].region + ")</li>";
-        }
-        bodyhtml += "</ul>";
-
-        var link1 = "//" + "liberty-sa.terradotta.com" + "/index.cfm?FuseAction=Students.Apply&amp;Program_ID=" + program.id;
-        var link2 = "//liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=" + program.id;
-
-        var footerhtml = "<div class='text-center'><a class='btn btn-primary btn-xs' style='margin-right:2px' href='" + link1 + "' target='_blank'>Apply Now</a><a class='btn btn-primary btn-xs' href='" + link2 + "' target='_blank'>Learn More</a></div>";
-
-        return "<div style='border-right: 1px solid #000; padding-right: 15px;'>" + headerhtml + bodyhtml + footerhtml + "</div>";
-    }
-
-    function showMarker(id, country){
-        var pid = 0;
-        for(var i in programs){
-            if(programs[i].id == id){
-                pid = i;
-                break;
-            }
+        if (!location.unique) {
+          marker.setLabel("+");
+          marker.set('spiderfied', false);
+          marker.set("popup", "");
         }
 
-        country = programs[pid].countries[country];
-        worldmap.setCenter(new google.maps.LatLng(country.latitude, country.longitude));
-        worldmap.setZoom(zoom);
+        google.maps.event.addListener(marker, "mouseover", function(e) {
+          if (this.get('popup') !== "") {
+            infowindow.setContent(this.get('popup'));
+            infowindow.open(WORLD_MAP, this);
+          }
+        });
 
-        window.location.href = "#googlemap";
+        google.maps.event.addListener(marker, "click", function(e) {
+          editMarkerVisibility(this, false);
+          if (this.get('popup') !== "") {
+            infowindow.setContent(this.get('popup'));
+            infowindow.open(WORLD_MAP, this);
+          }
+        });
+
+
+        OMS.addMarker(marker);
+        MARKER_CLUSTERER.addMarker(marker);
+      }
     }
 
-    function hideList() {
-        var list = document.getElementById("list");
-        list.innerHTML = "";
-        list.style.display = "none";
+    if (SEARCH_RESULTS.total) MARKER_CLUSTERER.fitMapToMarkers();
 
-        var listSpan = document.getElementById("listSpan");
-        listSpan.style.display = "none";
-    }
+    google.maps.event.addListener(WORLD_MAP, "click", function(event) {
+      infowindow.close();
+      for (var i in OMS.getMarkers()) {
+        editMarkerVisibility(OMS.getMarkers()[i], true);
+      }
+      OMS.unspiderfy();
+    });
+  }
 
-    function showList() {
-        var list = document.getElementById("list");
-        list.innerHTML = "";
-        list.style.display = "block";
-
-        var listSpan = document.getElementById("listSpan");
-        listSpan.style.display = "inline-block";
-    }
-
-    function createList() {
-        showList();
-
-        var list = document.getElementById("list");
-
-        var table = document.createElement("table");
-        table.id = "table";
-        table.className = "table";
-        table.style.color = "#ffffff";
-        table.style.whiteSpace = "nowrap";
-
-        var tableBody = document.createElement("tbody");
-
-        for(var i in programs) {
-            if(programs[i].name.substring(0,2) != "G5" && gfive){
-                continue;
-            }
-            var firstcountry = "";
-            for(var country in programs[i].countries){
-                firstcountry = country;
-                break;
-            }
-
-            var tr2 = tableBody.insertRow(i);
-            var td1 = tr2.insertCell(0);
-
-            link = "//liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=" + programs[i].id;
-
-            td1.innerHTML = "<i class='fa fa-search-plus' aria-hidden='true' onclick='showMarker(" + '"' + programs[i].id + '", "' + firstcountry + '")' + "' title='Find Location on the Map'>&nbsp;</i>";
-            td1.innerHTML += "<a href='" + link + "' target='_blank' style='color: #ffffff; text-decoration: none;' title='View the Trip Program'>&nbsp;" + programs[i].name + "</a>";
-            td1.style.transition = "all 0.5s ease";
-
-            td1.onmouseenter = function(){
-                this.style.background = "rgba(0, 0, 0, 0.7)";
-                this.style.fontSize = "1.05em";
-            }
-
-            td1.onmouseleave = function(){
-                this.style.background = "rgba(0, 0, 0, 0)";
-                this.style.fontSize = "1em";
-            }
+  function editMarkerVisibility(marker, hide) {
+    if (OMS.markersNearMarker(marker, true).length) {
+      var cluster = OMS.markersNearMarker(marker);
+      cluster.push(marker);
+      for (i in cluster) {
+        if (cluster[i].get("spiderfied") && hide) {
+          cluster[i].setLabel("+");
+          cluster[i].set("spiderfied", false);
+          cluster[i].set("popup", "");
+        } else if (!hide) {
+          cluster[i].setLabel("");
+          cluster[i].set("spiderfied", true);
+          cluster[i].set("popup", addProgramHtml(SEARCH_RESULTS.data[cluster[i].get("program_index")], SEARCH_RESULTS.data[cluster[i].get("program_index")].locations[cluster[i].get("location_index")]));
         }
-
-        table.appendChild(tableBody);
-        list.appendChild(table);
+      }
     }
+  }
+
+  function showSearch() {
+    for (var group in SEARCH_CRITERIA) {
+      var option = document.createElement("option");
+      option.value = group;
+      option.text = SEARCH_CRITERIA[group].name;
+      document.getElementById("map-select1").add(option);
+    }
+
+    setSearchCriteria();
+
+    $(".hide").removeClass("hide");
+    $("#map-loading").addClass("hide");
+
+    $("#map-search1").selectize({
+      maxItems: 10,
+      valueField: 'value',
+      labelField: 'label',
+      searchField: 'label',
+      placeholder: 'Search For Any Trips',
+      selectOnTab: true,
+      options: CURRENT_SEARCH_CRITERIA,
+      optgroups: CURRENT_SEARCH_CRITERIA.map(function(i) {
+        return {
+          "value": i.optgroup,
+          "label": i.optgroup
+        };
+      }).filter(filterUnique),
+      plugins: ["remove_button"],
+      onFocus: function() {
+        $("#searchSubmit").addClass("focus");
+        $("#map-select1").addClass("focus");
+        $(".preMadeSubmit").addClass("focus");
+      },
+      onBlur: function() {
+        $("#searchSubmit").removeClass("focus");
+        $("#map-select1").removeClass("focus");
+        $(".preMadeSubmit").removeClass("focus");
+      }
+    });
+  }
+
+  function _cb_getParameters(data) { //populate SEARCH_CRITERIA with parameters
+    for (param in data.ELEMENT) {
+      manipulateSearchParameters(data.ELEMENT[param].DISPLAY_NAME, data.ELEMENT[param].OPTIONS.OPTION, "VALUE", "NAME", data.ELEMENT[param].FORM_NAME);
+      SEARCH_CRITERIA[data.ELEMENT[param].DISPLAY_NAME].type = data.ELEMENT[param].PARAM_TYPE;
+      SEARCH_CRITERIA[data.ELEMENT[param].DISPLAY_NAME].data = SEARCH_CRITERIA[data.ELEMENT[param].DISPLAY_NAME].data.slice(1);
+    }
+    loadSearch("parameters");
+  }
+
+  function manipulateSearchResults(data, total, verbiage) {
+    if (data[1] === undefined) {
+      SEARCH_RESULTS = {
+        link: SEARCH_RESULTS.link,
+        total: total,
+        verbiage: verbiage,
+        data: []
+      };
+    } else {
+      var tempVals = [];
+      var duplicateLocations = Object.values(data).map(function(i) {
+        return i.PROGRAM_CITY;
+      }).filter(function(val, i, arr) { //filters out any non-unique values from array
+        return arr.indexOf(val) !== i;
+      }).filter(function(val, i, arr) {
+        return arr.indexOf(val) === i;
+      });
+
+      SEARCH_RESULTS = {
+        link: SEARCH_RESULTS.link,
+        total: total,
+        verbiage: verbiage,
+        data: Object.values(data).map(function(i, index) {
+          return {
+            "value": i.PROGRAM_NAME,
+            "id": i.PROGRAM_ID,
+            "locations": [{
+              "region": i.PROGRAM_REGION,
+              "country": i.PROGRAM_COUNTRY,
+              "city": i.PROGRAM_CITY,
+              "latitude": i.PROGRAM_LATITUDE,
+              "longitude": i.PROGRAM_LONGITUDE,
+              "unique": !duplicateLocations.includes(i.PROGRAM_CITY)
+            }]
+          };
+        }).filter(function(val, i, arr) { //filters out any non-unique values from array
+          var newArr = arr.map(function(j) {
+            return j.id;
+          });
+          if (newArr.indexOf(val.id) !== i) {
+            tempVals.push([val.id, val.locations[0]]);
+          }
+          return newArr.indexOf(val.id) === i;
+        })
+      };
+    }
+
+    for (var i in tempVals) {
+      for (var j in SEARCH_RESULTS.data) {
+        if (tempVals[i][0] === SEARCH_RESULTS.data[j].id) {
+          SEARCH_RESULTS.data[j].locations.push(tempVals[i][1]);
+        }
+      }
+    }
+  }
+
+  function addProgramHtml(program, location) {
+    var headerhtml = "<div style='overflow:hidden;' class='text-center'><strong>" + program.value + "</strong></div>";
+
+    var bodyhtml = "<ul>";
+    for (var i in program.locations) {
+      if (location.city === program.locations[i].city && program.locations.length > 1) bodyhtml += "<li><b>";
+      else bodyhtml += "<li>";
+      bodyhtml += program.locations[i].city + ", " + program.locations[i].country + ", " + program.locations[i].region;
+      if (location.city === program.locations[i].city && program.locations.length > 1) bodyhtml += "</b></li>";
+      else bodyhtml += "</li>";
+    }
+    bodyhtml += "</ul>";
+
+    var footerhtml = "<div class='text-center'><a class='btn btn-primary btn-xs' href='https://liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=" + program.id + "' target='_blank'>Learn More</a></div>";
+
+    return "<div style='border-right: 1px solid #000; padding-right: 15px;'>" + headerhtml + bodyhtml + footerhtml + "</div>";
+  }
+
+  function manipulateSearchParameters(group, data, key, value, id, optionalValues) {
+    if (data[1] === undefined) {
+      SEARCH_CRITERIA[group] = {
+        name: group.toString(),
+        id: id.toString(),
+        data: []
+      };
+    } else {
+      SEARCH_CRITERIA[group] = {
+        name: group.toString(),
+        id: id.toString(),
+        data: Object.values(data).map(function(i) {
+          var optionals = {};
+          for (var j in optionalValues) optionals[j.toString()] = i[optionalValues[j.toString()].toString()].toString();
+          return Object.assign({
+            "value": i[key].toString(),
+            "label": i[value].toString(),
+            "optgroup": group.toString()
+          }, optionals);
+        }).filter(filterUnique)
+      };
+    }
+  }
+
+  function _cb_getPrograms(data) { //populate SEARCH_CRITERIA with programs
+    var total = data.ROWCOUNT;
+    if (total > 1) data = data.PROGRAM;
+    else data = {
+      1: data.PROGRAM
+    };
+
+    //manipulateSearchParameters("Programs", data, "PROGRAM_NAME", "PROGRAM_NAME", "programName", false);
+    manipulateSearchParameters("Regions", data, "PROGRAM_REGION", "PROGRAM_REGION", "region");
+    manipulateSearchParameters("Countries", data, "PROGRAM_COUNTRY", "PROGRAM_COUNTRY", "country");
+    manipulateSearchParameters("Cities", data, "PROGRAM_CITY", "PROGRAM_CITY", "city", {
+      "long": "PROGRAM_LONGITUDE",
+      "lat": "PROGRAM_LATITUDE"
+    });
+
+    loadSearch("programs");
+  }
+
+  $(document).ready(function() {
+    var parameterIdString = PARAMETER_IDS.map(function(i) { //turns the parameter ids into strings
+      return i;
+    }).toString();
+
+    if ($("#pagenav a:contains(Logout)").length == 1) {
+      $("#home_applied span").text("Navigation Links");
+      $("#home_applied a:nth-child(2)").text("MY APPLICATIONS");
+      $("#home_applied a:nth-child(2)").attr("href", "/index.cfm?FuseAction=Students.Home&RequiredProfile=1");
+
+      if ($("#pagenav a:contains(Administrative)").length == 1) {
+        $("#home_applied a:nth-child(3)").text("ADMINISTRATIVE");
+        $("#home_applied a:nth-child(3)").attr("href", "/index.cfm?FuseAction=Administration.Home&RequiredProfile=1");
+      } else {
+        $("#home_applied a:nth-child(3)").css("display", "none");
+      }
+
+      var newlink = document.createElement("a");
+      newlink.setAttribute("href", "/index.cfm?FuseAction=Security.Logout");
+      newlink.innerHTML = "LOGOUT";
+      $("#home_applied").append(newlink);
+    };
+
+    createIESupport();
+    loadScripts();
+
+    document.addEventListener("click", function(event) {
+      if ($("#map-minimize").is(":visible")) {
+        var path = event.path || (event.composedPath && event.composedPath()) || composedPath(event.target);
+        if (!isOnId(path, "programList") && !isOnId(path, "map-minimize")) changeDisplay(false);
+      }
+    });
+
+    SEARCH_LOAD++; //load parameters
+    $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchElements&ResponseEncoding=JSON&callBackName=getParameters&jsoncallback=?&param_ids=" + parameterIdString + "&parameters=yes");
+
+    SEARCH_LOAD++; //load programs
+    $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=getPrograms&jsoncallback=?&params=p_11009=" + encodeSearchValue(MAP_TYPE) + "|p_11009_t=SELCT");
+  });
 </script>
