@@ -1,110 +1,110 @@
 <div id="programparametersformatted"></div>
 <script>
-    var MAP_TYPE = "Short Term Trips", //programs available in this search
-        PARAMETER_IDS = [ //all the parameters available in this search
-            "11010", //courses
-            "11034", //schools
-            "11035", //departments
-            "11029", //terms
-        ];
+  var MAP_TYPE = "Short Term Trips", //programs available in this search
+    PARAMETER_IDS = [ //all the parameters available in this search
+      "11010", //courses
+      "11034", //schools
+      "11035", //departments
+      "11029", //terms
+    ];
 
-    var SEARCH_CRITERIA = {},
+  var SEARCH_CRITERIA = {},
     SEARCH_RESULTS = {};
 
-    var LOAD = LOADED = 0;
+  var LOAD = LOADED = 0;
 
-    function manipulateSearchParameters(group, data, key, value, id, optionalValues) {
-        if (data[1] === undefined) {
-            SEARCH_CRITERIA[group] = {
-                name: group.toString(),
-                id: id.toString(),
-                data: []
-            };
-        } else {
-            SEARCH_CRITERIA[group] = {
-                name: group.toString(),
-                id: id.toString(),
-                data: Object.values(data).map(function(i) {
-                    var optionals = {};
-                    for (var j in optionalValues) optionals[j.toString()] = i[optionalValues[j.toString()].toString()].toString();
-                    return Object.assign({
-                        "value": i[key].toString(),
-                        "label": i[value].toString(),
-                        "optgroup": group.toString()
-                    }, optionals);
-                }).filter(filterUnique)
-            };
+  function manipulateSearchParameters(group, data, key, value, id, optionalValues) {
+    if (data[1] === undefined) {
+      SEARCH_CRITERIA[group] = {
+        name: group.toString(),
+        id: id.toString(),
+        data: []
+      };
+    } else {
+      SEARCH_CRITERIA[group] = {
+        name: group.toString(),
+        id: id.toString(),
+        data: Object.values(data).map(function(i) {
+          var optionals = {};
+          for (var j in optionalValues) optionals[j.toString()] = i[optionalValues[j.toString()].toString()].toString();
+          return Object.assign({
+            "value": i[key].toString(),
+            "label": i[value].toString(),
+            "optgroup": group.toString()
+          }, optionals);
+        }).filter(filterUnique)
+      };
+    }
+  }
+
+  function encodeSearchValue(value) {
+    return encodeURIComponent(value).replace(/"/g, '%22').replace(/'/g, '%27') + "%7F";
+  }
+
+  function filterUnique(val, i, arr) { //filters out any non-unique values from array
+    return arr.map(function(j) {
+      return j.value;
+    }).indexOf(val.value) === i;
+  }
+
+  function load() {
+    LOADED++;
+    if (LOAD == LOADED) {
+      for (var i in SEARCH_RESULTS) {
+        $("#programparametersformatted").append("<div><b>" + i + "</b></div><br />");
+        $("#programparametersformatted").append("<span id=" + i + "></span>");
+        for (var j in SEARCH_RESULTS[i]) {
+          $("#" + i).append(SEARCH_RESULTS[i][j] + "|");
         }
+        $("#" + i).text($("#" + i).text().slice(0, -1));
+        $("#programparametersformatted").append("<br /><br />");
+      }
+    }
+  }
+
+  function _cb_getPrograms(data) { //populate SEARCH_CRITERIA with programs
+    var total = data.ROWCOUNT;
+    if (total > 1) data = data.PROGRAM;
+    else data = {
+      1: data.PROGRAM
+    };
+
+    manipulateSearchParameters("Programs", data, "PROGRAM_ID", "PROGRAM_NAME", "programName", false);
+
+    var parameterIdString = PARAMETER_IDS.map(function(i) { //turns the parameter ids into strings
+      return i;
+    }).toString();
+
+    for (var i in PARAMETER_IDS) {
+      SEARCH_RESULTS[PARAMETER_IDS[i]] = [];
+      for (var j in SEARCH_CRITERIA.Programs.data) {
+        var id = SEARCH_CRITERIA.Programs.data[j].value;
+        LOAD++;
+        $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramParameters&ResponseEncoding=JSON&callBackName=getParameters&jsoncallback=?&param_id=" + PARAMETER_IDS[i] + "&PROGRAM_ID=" + id);
+      }
+    }
+  }
+
+  function _cb_getParameters(data) {
+    data = data.data;
+    for (var x in data.param_gloss) {
+      SEARCH_RESULTS[data.param_id[x]].push(data.param_value[x]);
     }
 
-    function encodeSearchValue(value) {
-      return encodeURIComponent(value).replace(/"/g, '%22').replace(/'/g, '%27') + "%7F";
+    for (var i in SEARCH_RESULTS) {
+      SEARCH_RESULTS[i] = SEARCH_RESULTS[i].filter(function(val, i, arr) {
+        return arr.indexOf(val) === i;
+      });
     }
 
-    function filterUnique(val, i, arr) { //filters out any non-unique values from array
-      return arr.map(function(j) {
-        return j.value;
-      }).indexOf(val.value) === i;
-    }
+    load();
+  }
 
-    function load() {
-        LOADED ++;
-        if(LOAD == LOADED) {
-            for(var i in SEARCH_RESULTS) {
-                $("#programparametersformatted").append("<div><b>" + i + "</b></div><br />");
-                $("#programparametersformatted").append("<span id=" + i + "></span>");
-                for(var j in SEARCH_RESULTS[i]) {
-                    $("#" + i).append(SEARCH_RESULTS[i][j] + "|");
-                }
-                $("#" + i).text($("#" + i).text().slice(0,-1));
-                $("#programparametersformatted").append("<br /><br />");
-            }
-        }
-    }
+  $(document).ready(function() {
+    var parameterIdString = PARAMETER_IDS.map(function(i) { //turns the parameter ids into strings
+      return i;
+    }).toString();
 
-    function _cb_getPrograms(data) { //populate SEARCH_CRITERIA with programs
-        var total = data.ROWCOUNT;
-        if (total > 1) data = data.PROGRAM;
-        else data = {
-            1: data.PROGRAM
-        };
-
-        manipulateSearchParameters("Programs", data, "PROGRAM_ID", "PROGRAM_NAME", "programName", false);
-
-        var parameterIdString = PARAMETER_IDS.map(function(i) { //turns the parameter ids into strings
-          return i;
-        }).toString();
-
-        for(var i in PARAMETER_IDS) {
-            SEARCH_RESULTS[PARAMETER_IDS[i]] = [];
-            for(var j in SEARCH_CRITERIA.Programs.data) {
-                var id = SEARCH_CRITERIA.Programs.data[j].value;
-                LOAD++;
-                $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramParameters&ResponseEncoding=JSON&callBackName=getParameters&jsoncallback=?&param_id=" + PARAMETER_IDS[i] + "&PROGRAM_ID=" + id);
-            }
-        }
-    }
-
-    function _cb_getParameters(data) {
-        data = data.data;
-        for(var x in data.param_gloss) {
-            SEARCH_RESULTS[data.param_id[x]].push(data.param_value[x]);
-        }
-
-        for(var i in SEARCH_RESULTS) {
-            SEARCH_RESULTS[i] = SEARCH_RESULTS[i].filter(function (val, i, arr) {
-              return arr.indexOf(val) === i;
-            });
-        }
-
-        load();
-    }
-
-    $(document).ready(function() {
-        var parameterIdString = PARAMETER_IDS.map(function(i) { //turns the parameter ids into strings
-            return i;
-        }).toString();
-
-        $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=getPrograms&jsoncallback=?&params=p_11009=" + encodeSearchValue(MAP_TYPE) + "|p_11009_t=SELCT");
-    });
+    $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=getPrograms&jsoncallback=?&params=p_11009=" + encodeSearchValue(MAP_TYPE) + "|p_11009_t=SELCT");
+  });
 </script>
