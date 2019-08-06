@@ -300,6 +300,8 @@
     OMS,
     MARKER_CLUSTERER;
 
+  var LINK_VARIABLES = "";
+
   function gm_authFailure() {
     document.getElementById("google-map").style.innerHTML = "Map Unsupported";
   }
@@ -513,6 +515,9 @@
       SEARCH_RESULTS.link = customLink;
     }
 
+    var newLink = window.location.origin + window.location.pathname + LINK_VARIABLES + "&preload=" + encodeSearchValue(SEARCH_RESULTS.link);
+    window.history.pushState({reload: newLink}, "Search", newLink);
+
     MAP_LOAD++;
     $.getJSON(SEARCH_RESULTS.link);
   }
@@ -693,7 +698,7 @@
       var program = SEARCH_RESULTS.data[i];
       var link = "https://liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=" + program.id;
       var mapMarkerButton = "<i class='fa fa-search-plus' aria-hidden='true' style='cursor: pointer;' onclick='goToMarker(" + currentId + ")' title='View Marker'>&nbsp;</i>";
-      $("#map-program-list").append("<hr /><div style='text-align: left;'>" + mapMarkerButton + "<b><a style='text-decoration: none' href='" + link + "' target='_blank'>" + program.value + "</a></b></div>");
+      $("#map-program-list").append("<hr /><div style='text-align: left;'>" + mapMarkerButton + "<b><a style='text-decoration: none' href='" + link + "'>" + program.value + "</a></b></div>");
       for (var j in program.locations) {
         currentId++;
       }
@@ -901,7 +906,7 @@
     }
     bodyhtml += "</ul>";
 
-    var footerhtml = "<div class='text-center'><a class='btn btn-primary btn-xs' href='https://liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=" + program.id + "' target='_blank'>Learn More</a></div>";
+    var footerhtml = "<div class='text-center'><a class='btn btn-primary btn-xs' href='https://liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=" + program.id + "'>Learn More</a></div>";
 
     return "<div style='border-right: 1px solid #000; padding-right: 15px;'>" + headerhtml + bodyhtml + footerhtml + "</div>";
   }
@@ -930,6 +935,19 @@
     }
   }
 
+  function getUrlVariables(varName) {
+    var searchString = window.location.search.substring(1),
+      i, val, vars = searchString.split("&");
+
+    for (i = 0; i < vars.length; i++) {
+      val = vars[i].split("=");
+      if (val[0] == varName) {
+        return val[1];
+      }
+    }
+    return null;
+  }
+
   function _cb_getPrograms(data) { //populate SEARCH_CRITERIA with programs
     var total = data.ROWCOUNT;
     if (total > 1) data = data.PROGRAM;
@@ -952,6 +970,13 @@
     var parameterIdString = PARAMETER_IDS.map(function(i) { //turns the parameter ids into strings
       return i;
     }).toString();
+
+    LINK_VARIABLES = "?FuseAction=" + getUrlVariables("FuseAction") + "&Link_ID=" + getUrlVariables("Link_ID");
+
+    var link;
+    if(link = getUrlVariables("preload")) {
+      PRE_SEARCH = decodeURIComponent(link);
+    }
 
     if ($("#pagenav a:contains(Logout)").length == 1) {
       $("#home_applied span").text("Navigation Links");
