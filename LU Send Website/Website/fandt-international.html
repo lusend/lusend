@@ -1,0 +1,107 @@
+<style type="text/css">
+  #pagebodycontentheader h2 {
+    text-align: center;
+  }
+
+  #pagenav-wrapper {
+    display: none;
+  }
+
+  #home_button {
+    position: fixed;
+    z-index: 100;
+    top: 10px;
+    left: 10px;
+  }
+
+  #home_button a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: .95em;
+    color: #000000;
+    text-align: center;
+  }
+
+  #home_button a:hover {
+    color: #606060;
+  }
+</style>
+
+<div id="home_button"><a href="/"><i class="fa fa-2x">&nbsp;</i><i aria-hidden="true" class="fa fa-home fa-2x">&nbsp;</i></a></div>
+<div id="general-overview" style="text-align: center">
+  <div id="home_applied" onclick=""><span>Already Applied?</span><a href="/secure/">LIBERTY LOGIN</a><a href="/index.cfm?FuseAction=Security.ExistingUserLogin">NON-LIBERTY LOGIN</a></div>
+  <div class="trip-overview">
+    <span class="center-block" style="text-align: center;"><strong>
+    Staff is available to consult with faculty in-person at any point in the proposal or development process. Email <a href="mailto:lusend@liberty.edu">lusend@Liberty.edu</a> to connect today!</strong></span><br />
+    <div class="row-overview" style="min-height: 1px; height: 350px; display: table;">
+      <div class="row-item right" style="width:49%;">
+        <div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=26354'); min-height: 350px;"></div>
+      </div>
+      <div class="row-item left" style="width:49%; height: auto;">
+        <div class="row-info-single-block">
+          <span class="title">Trip Proposal Process</span><br />
+          <span class="summary">
+            As faculty, you are integrally involved in equipping Liberty students to be fully prepared to meet their futures in a globalizing marketplace. LU Send works with you to create cross-cultural opportunities that contribute to your students’ development as lifelong learners and Champions for Christ, wherever their journey takes them.<br /><br />
+            Please contact Audrey Hammond, by email or by phone (434-592-4204), Director of Academic Operations, to learn more about the proposal process.<br /><br />
+            All of the proposal dates are hard deadlines.<br /><br />
+            Fall 2020 | October 1st, 2019<br />
+            Winter 2021 | December 1st, 2019<br />
+            Spring 2021 | February 15th, 2020<br />
+            Summer 2021 | April 15th, 2020<br /><br />
+            LU Send will communicate the proposal’s approval status to the faculty/staff lead. Approved proposals will be moved into the trip development process.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row-overview" style="min-height: 1px; height: 350px; display: table;">
+      <div class="row-item left" style="width:49%;">
+        <div class="row-pic" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=26355'); min-height: 350px;"></div>
+      </div>
+      <div class="row-item right" style="width:49%; height: auto;">
+        <div class="row-info-single-block">
+          <span class="title">Development Process</span><br />
+          <span class="summary">
+            <ol>
+              <li>The Trip Coordinator assigned to your trip will meet with you to assess and finalize the specific logistical needs of your trip. This includes:<ul>
+                  <li>Trip itinerary</li>
+                  <li>Budget & payment plan options</li>
+                  <li>Flights & ground transportation</li>
+                  <li>Participant training requirements</li>
+                  <li>Promotion & recruiting strategies</li>
+                  <li>Application personalization</li>
+                  <li>Academic options & course registration strategy</li>
+                  <li>Miscellaneous needs (passports/visas, insurance, background checks, specific vendor requirements, etc.)</li>
+                </ul>
+              </li>
+              <li>The faculty/staff leader and the appropriate LU Send individuals will sign the Trip Agreement outlining the responsibilities of all involved parties.</li>
+              <li>After the Trip Agreement has been signed, promotion & recruiting for the trip can begin. Students will also be able to apply for the trip at this point.</li>
+            </ol>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="https://liberty.co1.qualtrics.com/jfe/form/SV_bjDUXq3IcxegfOt" class="btn btn-primary btn-lg" style="padding: 10px;">Submit Proposal</a>
+</div>
+
+<script>
+  $(document).ready(function() {
+    if ($("#pagenav a:contains(Logout)").length == 1) {
+      $("#home_applied span").text("Navigation Links");
+      $("#home_applied a:nth-child(2)").text("MY APPLICATIONS");
+      $("#home_applied a:nth-child(2)").attr("href", "/index.cfm?FuseAction=Students.Home&RequiredProfile=1");
+
+      if ($("#pagenav a:contains(Administrative)").length == 1) {
+        $("#home_applied a:nth-child(3)").text("ADMINISTRATIVE");
+        $("#home_applied a:nth-child(3)").attr("href", "/index.cfm?FuseAction=Administration.Home&RequiredProfile=1");
+      } else {
+        $("#home_applied a:nth-child(3)").css("display", "none");
+      }
+
+      var newlink = document.createElement("a");
+      newlink.setAttribute("href", "/index.cfm?FuseAction=Security.Logout");
+      newlink.innerHTML = "LOGOUT";
+      $("#home_applied").append(newlink);
+    };
+  });
+</script>
