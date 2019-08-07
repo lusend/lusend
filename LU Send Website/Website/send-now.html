@@ -71,71 +71,191 @@
   #home_button a:hover {
     color: #858585;
   }
+
+  #G5 div.logo-container div.center img.g5_arrow {
+    position: relative;
+    width: 8%;
+    margin-top: 30px;
+  }
+
+  .will_blur.blur {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+  }
+
+  .quad-button .modal-content {
+    background: rgba(255, 255, 255, 0);
+    color: #ffffff;
+    height: 100%;
+    max-height: 300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: none;
+  }
+
+  .quad-button .modal-header,
+  .quad-button .modal-footer {
+    border-top: 0px;
+    border-bottom: 0px;
+  }
+
+  .quad-button .modal-body {
+    height: 200% !important;
+  }
+
+  .quad-button .modal-dialog {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .quad-button .row>div {
+    height: 50%;
+    width: 50% !important;
+  }
+
+  @media (min-width: 550px) {
+    .quad-button .row>div {
+      width: 50%;
+    }
+
+    .quad-button .modal-body {
+      font-size: 0.9em;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .quad-button .modal-body {
+      font-size: 1.0em;
+    }
+  }
 </style>
 
-<div id="home_button"><a href="/"><i class="fa fa-2x">&nbsp;</i><i aria-hidden="true" class="fa fa-home fa-2x">&nbsp;</i></a></div>
+<div id="home_button" class="will_blur"><a href="/"><i class="fa fa-2x">&nbsp;</i><i aria-hidden="true" class="fa fa-home fa-2x">&nbsp;</i></a></div>
 
-<div id="G5" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22410');">
-  <div id="home_applied" onclick=""><span>Already Applied?</span><a href="/secure/">LIBERTY LOGIN</a><a href="/index.cfm?FuseAction=Security.ExistingUserLogin">NON-LIBERTY LOGIN</a></div>
-  <div class="logo-container">
+<div id="G5" class="will_blur" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22410');">
+  <div id="home_applied" class="will_blur" onclick=""><span>Already Applied?</span><a href="/secure/">LIBERTY LOGIN</a><a href="/index.cfm?FuseAction=Security.ExistingUserLogin">NON-LIBERTY LOGIN</a></div>
+  <div class="logo-container will_blur">
     <div class="center">
-      <img src="https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22403" style="width: 70%" alt="Logo" />
+      <img src="https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22403" style="width: 45%" alt="Logo" /><br />
+      <a href="#firstblocksn"><img class="g5_arrow bounce" src="https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=21408" alt="Scroll Down" /></a>
     </div>
   </div>
+  <div id="firstblocksn" class="logo-container will_blur" style="background: rgba(255,255,255,.7); text-align: left; height: auto; padding-top: 40px; padding-bottom: 40px; padding-left: 7%; padding-right: 7%;">
+    <span id="requisites" style="font-size: 1.5em">At Liberty, we believe in the incredible power of God to move through us when our state of readiness intersects with someone else’s urgent need. That’s why we’ve created the LU Send Now initiative. LU Send Now is the University's quick response team for urgent disaster relief and humanitarian needs. If you want to be equipped and ready to respond to needs around the world whenever the moment comes, we’d love for you to join our team.</span><br /><br />
+    <span style="font-size: 2em"><b>Domestic Team</b></span><br /><br />
+    <span style="font-size: 1.5em">In order to qualify for the LU Send Now Domestic Team you must:<ul>
+      <li>18 years of age or older in order to participate in response efforts which require travel off Liberty’s campus. Both undergraduate and graduate students are eligible to attend.</li>
+      <li>Be actively enrolled in residential courses at Liberty University.</li>
+      <li>Maintain a minimum GPA of 2.5 in order to be eligible to participate in a response effort. This will be verified in the application process. He or she must be in good standing in all of his/her classes in order to be deployed for a response effort.</li>
+      <li>Be in good standing with the Office of Community Life. This will be verified in the application process, and before a student is deployed for a response effort.</li>
+      <li>Demonstrate a past and present involvement in local church involvement and community outreach.</li>
+      <li>Complete the application in full, and must pass a background check in order to participate.</li>
+      <li>Complete the required Send Now training in order to be eligible to participate in a response effort.</li>
+      <li>Must sign an Assumption of Risk form releasing the University from any liability.</li>
+      <li>Must notify parents/emergency contact of participation in the program.</li>
+    </ul></span><br />
+    <span style="font-size: 2em"><b>International Team</b></span><br /><br />
+    <span style="font-size: 1.5em">In order to qualify for the LU Send Now International Team you must:<ul>
+      <li>Fulfill all the requirements for participation in the Domestic Team</li>
+      <li>Demonstrate previous travel experience outside the US & Canada OR extensive disaster relief experience domestically</li>
+      <li>Complete an in-person interview</li>
+      <li>Acquire a US Passport & other government issued photo ID</li>
+      <li>Fulfill certain health requirements</li>
+    </ul></span>
+  </div>
   <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
-    <div class="option option-3" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22411');">
+    <div class="option option-3 will_blur" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22411');">
       <div class="background">
         <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-pencil fa-5x">&nbsp;</i></span>
         <div class="text">
           <div class="title title-other">APPLY</div>
           <div class="desc">Students Apply to either Hands and Feet Ministry (Humanitarian Aid) or Head and Heart Ministry (Psychological and Spiritual Aid). Leaders fill out the leader application. Students must also fill out the $100 Student
             Deposit.</div>
-          <a href="" target="_blank" class="link">Apply</a>
+          <a style="cursor: pointer;" onclick="openModal('training')" class="link">Apply/Pay Deposit</a>
         </div>
       </div>
     </div>
   </div>
   <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
-    <div class="option option-1" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22408');">
+    <div class="option option-1 will_blur" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22408');">
       <div class="background">
         <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-check-circle fa-5x">&nbsp;</i></span>
         <div class="text">
           <div class="title title-other">REQUISITES</div>
           <div class="desc">Depending on where you want to go, you can fill out your application to be part of the Domestic Team or the International and Domestic Team. The following link lays out the various requirements for both teams.</div>
-          <a href="" class="link">View</a>
+          <a href="#requisites" class="link">View Requisites</a>
         </div>
       </div>
     </div>
   </div>
   <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
-    <div class="option option-2" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=23612');">
+    <div class="option option-2 will_blur" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=23612');">
       <div class="background">
         <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-book fa-5x">&nbsp;</i></span>
         <div class="text">
           <div class="title title-other">TRAININGS</div>
           <div class="desc">Every student who applies to be part of LU Send Now must undergo this training. Click the button below to view and sign up for one of the training sessions.</div>
-          <a href="" target="_blank" class="link">View</a>
+          <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=jiH4ugKzZUSpk0o5yXJRsnkv02z7DvZMp7ZBidaNZQpUNFo3NlEyWDRZNERRT09GTVZFN1BOV1lFVy4u" class="link">View Trainings</a>
         </div>
       </div>
     </div>
   </div>
   <div class="wrapper col-xs-12 col-sm-3 col-md-3 col-lg-3">
-    <div class="option option-4" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22409');">
+    <div class="option option-4 will_blur" onclick="" style="background-image: url('https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=22409');">
       <div class="background">
         <span class="center"><i aria-hidden="true" class="fa fa-5x">&nbsp;</i><i aria-hidden="true" class="fa fa-gift fa-5x">&nbsp;</i></span>
         <div class="text">
           <div class="title title-other">DONATIONS</div>
           <div class="desc">The ongoing success of Send Now is largely due to the gifts and contributions of those who donate to the initiative. All proceeds go directly to the Send Now initiative and is the reason why we can send students at a
             moment’s notice.</div>
-          <a href="" target="_blank" class="link">Donate</a>
+          <a href="http://www.liberty.edu/lusend/index.cfm?PID=33273" class="link">Donate Now</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<div class="modal fade quad-button" id="training" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" id="home_page_container" style="background-image: none;" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="color: #ffffff;">
+        <button type="button" class="close" data-dismiss="modal" style="color: #fff; opacity: 0.8;">&times;</button>
+        <h4 class="modal-title" id="myModalTitle">Apply/Pay Deposit</h4>
+      </div>
+      <div class="modal-body row" id="myModalBody">
+        <div><a class="center" href="http://liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=11826"><span class="center">Apply For Hands & Feet Ministry</span></a></div>
+        <div><a class="center" href="http://liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=12101"><span class="center">Apply For Head & Heart Ministry</span></a></div>
+        <div><a class="center" href="https://liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=11817"><span class="center">Apply As a Leader</span></a></div>
+        <div><a class="center" href="http://www.liberty.edu/lusend/index.cfm?PID=33640"><span class="center">Submit Student Deposit</span></a></div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal" style="background: #ffffff; color: #363636;">Close</button></div>
+    </div>
+  </div>
+</div>
+
 <script>
   $(document).ready(function() {
+    $('a[href*="#"]').click(function(e) {
+      e.preventDefault();
+      var dest = $(this).attr('href');
+      $('#G5').animate({
+        scrollTop: Math.abs($(dest).offset().top)
+      }, 'slow');
+    });
+
+    $('.quad-button').on('hidden.bs.modal', function() {
+      $(".will_blur").toggleClass("blur");
+    });
+
     if ($("#pagenav a:contains(Logout)").length == 1) {
       $("#home_applied span").text("Navigation Links");
       $("#home_applied a:nth-child(2)").text("MY APPLICATIONS");
@@ -154,4 +274,9 @@
       $("#home_applied").append(newlink);
     };
   });
+
+  function openModal(id) {
+    $("#" + id).modal();
+    $(".will_blur").toggleClass("blur");
+  }
 </script>
