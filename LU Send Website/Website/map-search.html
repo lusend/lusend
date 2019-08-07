@@ -829,6 +829,7 @@
   }
 
   function _cb_getParameters(data) { //populate SEARCH_CRITERIA with parameters
+    if(data.RECORDCOUNT === 1) data.ELEMENT = [data.ELEMENT];
     for (param in data.ELEMENT) {
       manipulateSearchParameters(data.ELEMENT[param].DISPLAY_NAME, data.ELEMENT[param].OPTIONS.OPTION, "VALUE", "NAME", data.ELEMENT[param].FORM_NAME);
       SEARCH_CRITERIA[data.ELEMENT[param].DISPLAY_NAME].type = data.ELEMENT[param].PARAM_TYPE;
@@ -1007,7 +1008,8 @@
     });
 
     SEARCH_LOAD++; //load parameters
-    $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchElements&ResponseEncoding=JSON&callBackName=getParameters&jsoncallback=?&param_ids=" + parameterIdString + "&parameters=yes");
+    if(PARAMETER_IDS.length > 0) $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchElements&ResponseEncoding=JSON&callBackName=getParameters&jsoncallback=?&param_ids=" + parameterIdString + "&parameters=yes");
+    else loadSearch("parameters");
 
     SEARCH_LOAD++; //load programs
     $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=getPrograms&jsoncallback=?&params=p_11009=" + encodeSearchValue(MAP_TYPE) + "|p_11009_t=SELCT");
