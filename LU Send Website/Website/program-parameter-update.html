@@ -1,3 +1,4 @@
+<button onclick="run()">Get Program Parameters</button><br /><br />
 <div id="programparametersformatted"></div>
 <script>
   var MAP_TYPE = "Short Term Trips", //programs available in this search
@@ -100,11 +101,11 @@
     load();
   }
 
-  $(document).ready(function() {
+  function run() {
     var parameterIdString = PARAMETER_IDS.map(function(i) { //turns the parameter ids into strings
       return i;
     }).toString();
 
     $.getJSON("https://liberty-sa.terradotta.com/piapi/index.cfm?callName=getProgramSearchResults&ResponseEncoding=JSON&callBackName=getPrograms&jsoncallback=?&params=p_11009=" + encodeSearchValue(MAP_TYPE) + "|p_11009_t=SELCT");
-  });
+  }
 </script>
