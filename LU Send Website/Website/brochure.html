@@ -234,7 +234,7 @@
       <div><a id="ts" onclick="createModal('ts')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-exclamation-triangle fa-3x">&nbsp;</i><br />Travel Safety</span></span></a>
       </div>
       <div><a id="cg" onclick="createModal('cg')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-money fa-3x">&nbsp;</i><br />Cost Guide</span></span></a></div>
-      <div><a id="fi" onclick="createModal('fi')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-plane fa-3x">&nbsp;</i><br />Flight Itinerary</span></span></a></div>
+      <div><a id="fi" onclick="createModal('fi')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-plane fa-3x">&nbsp;</i><br /><span id='flightororg'>Flight Itinerary</span></span></span></a></div>
       <div><a id="pg" onclick="createModal('pg')" class="center"><span class="shadow"><span class="center"><i class="fa fa-3x">&nbsp;</i><i aria-hidden="true" class="fa fa-suitcase fa-3x">&nbsp;</i><br />Packing Guide</span></span></a></div>
     </div>
   </div>
@@ -306,6 +306,14 @@
     $("#" + id).siblings("tr").fadeToggle(500);
   }
 
+  function setHeaderImage(imageID) {
+    $("#group4").css("background-image", "url(https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=" + imageID + ")");
+
+    if (!headerimage) {
+      $("#pagebodycontent div.page-header div h3.col-sm-10").css("background-image", "url(https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=" + imageID + ")");
+    }
+  }
+
   $(document).ready(function() {
     var countries = {
       "africa": "24751",
@@ -323,7 +331,6 @@
       "denmark": "25390",
       "ecaudor": "21755",
       "england": "21756",
-      "uk": "21756",
       "united kingdom": "21756",
       "france": "22789",
       "hockey": "22415",
@@ -372,14 +379,20 @@
       "ten2": "24665",
       "togo": "25377",
       "washington dc": "25387",
-      "domestic": "21753"
+      "united states": "25387",
+      "domestic": "21753",
+      "charlotte": "26365",
+      "bgea": "26365",
+      "bangladesh": "26367",
+      "swaziland": "26368",
     };
 
     var normalparameters = [
       "11034", //School
       "11035", //Department
       "11010", //Course options
-      "11029" //Term
+      "11029", //Term
+      "11036", //Durations
     ];
 
     var paymentparameters = [
@@ -440,6 +453,11 @@
     var title = $("#pagebodycontent div.page-header h3.col-sm-10").text().match(/^(.*)$/m)[0];
     $("#pagebodycontent div.page-header div h3.col-sm-10").html("<span id='brochure-title'>" + title + "</span>"); //reset title
 
+    //LU SERVE CHANGE TO ORGANIZATION
+    if (title.toLowerCase().indexOf("lu serve") != -1) {
+      $("#flightororg").text("Organization");
+    }
+
     //ADD VIDEO
     if (video) {
       video = video.replace("watch?v=", "embed/");
@@ -449,16 +467,18 @@
     }
 
     //ADD DEFAULT HEADER IMAGE AND BACKGROUND IMAGE
+    var locationPictureBackUp = false;
     for (var i in countries) {
       if (title.toLowerCase().indexOf(i) != -1) {
-        $("#group4").css("background-image", "url(https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=" + countries[i] + ")");
-
-        if (!headerimage) {
-          $("#pagebodycontent div.page-header div h3.col-sm-10").css("background-image", "url(https://liberty-sa.terradotta.com/_customtags/ct_Image.cfm?Image_ID=" + countries[i] + ")");
-        }
+        setHeaderImage(countries[i]);
+        locationPictureBackUp = false;
         break;
-      };
+      } else if(locations.toLowerCase().indexOf(i) != -1) {
+        locationPictureBackUp = countries[i];
+      }
     }
+
+    if(locationPictureBackUp) setHeaderImage(locationPictureBackUp);
 
     //ADD CUSTOM HEADER IMAGE
     if (headerimage) {
