@@ -274,7 +274,7 @@
     - PARAMETER_IDS
     - PRE_SEARCH
   */
-  
+
   var MAP_TYPE = "Short Term Trips", //programs available in this search
     PARAMETER_IDS = [ //all the parameters available in this search
       "11010", //courses
@@ -881,7 +881,7 @@
         verbiage: verbiage,
         data: Object.values(data).map(function(i, index) {
           return {
-            "value": i.PROGRAM_NAME,
+            "value": i.PROGRAM_NAME.replace("LU Send - ", "").replace("LU Send Domestic - ", ""),
             "id": i.PROGRAM_ID,
             "locations": [{
               "region": i.PROGRAM_REGION,

@@ -420,7 +420,6 @@
     var locations = [];
     $("#pagebodycontent div.row div.col-sm-8.col-lg-9 ul li:nth-child(1)").find("span").each(function() {
       locations.push($(this).text());
-      console.log($(this).text());
     });
 
     locations = locations.map(function(cur, i, arr) {
@@ -450,7 +449,7 @@
     //$("#payment_table_title").siblings("tr").hide();
 
     //STYLE TITLE
-    var title = $("#pagebodycontent div.page-header h3.col-sm-10").text().match(/^(.*)$/m)[0];
+    var title = $("#pagebodycontent div.page-header h3.col-sm-10").text().match(/^(.*)$/m)[0].replace("LU Send - ", "").replace("LU Send Domestic - ", "");
     $("#pagebodycontent div.page-header div h3.col-sm-10").html("<span id='brochure-title'>" + title + "</span>"); //reset title
 
     //LU SERVE CHANGE TO ORGANIZATION
