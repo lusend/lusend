@@ -452,8 +452,8 @@
     var title = $("#pagebodycontent div.page-header h3.col-sm-10").text().match(/^(.*)$/m)[0].replace("LU Send - ", "").replace("LU Send Domestic - ", "");
     $("#pagebodycontent div.page-header div h3.col-sm-10").html("<span id='brochure-title'>" + title + "</span>"); //reset title
 
-    //LU SERVE CHANGE TO ORGANIZATION
-    if (title.toLowerCase().indexOf("lu serve") != -1) {
+    //LU SERVE CUSTOM OPTIONS
+    if (title.toLowerCase().indexOf("lu serve - ") != -1) {
       $("#flightororg").text("Organization");
     }
 
