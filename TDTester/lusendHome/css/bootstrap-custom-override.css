@@ -1,0 +1,89 @@
+/*	Replace the left-side values with hexadecimal colors, throughout the file below.
+
+	Color Key:
+
+	#0a254e					= baseline color (from which to calculate other colors by)
+	#0a254e						= account setting - baseline color when no value
+	#091f42 				= 15% darker than #0a254e
+	#092146 						= 10% darker than #0a254e
+	#0a234a 			= 5% darker than #0a254e
+	#081e3e 				= 20% darker than #0a254e
+	#0e346d 	= 40% lighter than #0a254e
+
+	You can auto-generate these values (and this file), but choosing a custom color in the stock layout editor.
+
+*/
+
+/* gutters and body gradient override */
+body{background-color:#0a254e; background-image:linear-gradient(to bottom,rgba(255,255,255,0) 50px,#ffffff 700px)}
+
+/* typography */
+a{color:#0a254e}
+a:hover,a:focus{color:#091f42}
+.text-primary{color:#0a254e}
+a.text-primary:hover,a.text-primary:focus{color:#092146}
+.bg-primary{background-color:#0a254e}
+a.bg-primary:hover,a.bg-primary:focus{background-color:#092146}
+
+/* tables */
+.table .table{background-color:#0a254e}
+
+/* buttons */
+.btn-primary{background-color:#0a254e;border-color:#0a234a}
+.btn-primary:focus,.btn-primary.focus{background-color:#0a254e}
+.btn-primary:hover{background-color:#092146;border-color:#081e3e}
+.btn-primary:active,.btn-primary.active,.open>.dropdown-toggle.btn-primary{background-color:#092146;border-color:#081e3e}
+.btn-primary:active:hover,.btn-primary.active:hover,.open>.dropdown-toggle.btn-primary:hover,.btn-primary:active:focus,.btn-primary.active:focus,.open>.dropdown-toggle.btn-primary:focus,.btn-primary:active.focus,.btn-primary.active.focus,.open>.dropdown-toggle.btn-primary.focus{background-color:#0a254e}
+.btn-primary.disabled:hover,.btn-primary[disabled]:hover,fieldset[disabled] .btn-primary:hover,.btn-primary.disabled:focus,.btn-primary[disabled]:focus,fieldset[disabled] .btn-primary:focus,.btn-primary.disabled.focus,.btn-primary[disabled].focus,fieldset[disabled] .btn-primary.focus{background-color:#0a254e;border-color:#0a234a}
+.btn-primary .badge{color:#0a254e}
+.btn-link{color:#0a254e}
+.btn-link:hover,.btn-link:focus{color:#091f42}
+
+/* dropdowns */
+.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus{background-color:#0a254e}
+
+/* navs */
+.nav .open>a,.nav .open>a:hover,.nav .open>a:focus{border-color:#0a254e}
+.nav-tabs>li.active>a,.nav-tabs>li.active>a:hover,.nav-tabs>li.active>a:focus{background-color:#0a254e}
+.nav-tabs.nav-justified>.active>a,.nav-tabs.nav-justified>.active>a:hover,.nav-tabs.nav-justified>.active>a:focus{border-bottom-color:#0a254e}
+.nav-pills>li.active>a,.nav-pills>li.active>a:hover,.nav-pills>li.active>a:focus{background-color:#0a254e}
+.nav-tabs-justified>.active>a,.nav-tabs-justified>.active>a:hover,.nav-tabs-justified>.active>a:focus{border-bottom-color:#0a254e}
+
+/* paginations */
+.pagination>li>a,.pagination>li>span{color:#0a254e}
+.pagination>li>a:hover,.pagination>li>span:hover,.pagination>li>a:focus,.pagination>li>span:focus{color:#091f42}
+.pagination>.active>a,.pagination>.active>span,.pagination>.active>a:hover,.pagination>.active>span:hover,.pagination>.active>a:focus,.pagination>.active>span:focus{background-color:#0a254e;border-color:#0a254e}
+
+/* labels */
+.label-primary{background-color:#0a254e}
+.label-primary[href]:hover,.label-primary[href]:focus{background-color:#092146}
+
+/* thumbnails */
+.img-thumbnail{background-color:#0a254e}
+.thumbnail{background-color:#0a254e}
+a.thumbnail:hover,a.thumbnail:focus,a.thumbnail.active{border-color:#0a254e}
+
+/* progress bars */
+.progress-bar{background-color:#0a254e}
+
+/* list groups */
+.list-group-item.active>.badge,.nav-pills>.active>a>.badge{color:#0a254e}
+.list-group-item.active,.list-group-item.active:hover,.list-group-item.active:focus{background-color:#0a254e;border-color:#0a254e}
+.list-group-item.active .list-group-item-text,.list-group-item.active:hover .list-group-item-text,.list-group-item.active:focus .list-group-item-text{color:#0e346d}
+
+/* panels */
+.panel{box-shadow:0px 0px 10px rgba(0,0,0,0.2)}
+.panel-primary{border-color:#0a254e}
+.panel-primary>.panel-heading{background-color:#0a254e;border-color:#0a254e;background-image:linear-gradient(to bottom,rgba(255,255,255,0.25) 0%,rgba(255,255,255,0) 25%,rgba(255,255,255,0) 50%,rgba(255,255,255,0.25) 100%)}
+.panel-primary>.panel-heading+.panel-collapse>.panel-body{border-top-color:#0a254e}
+.panel-primary>.panel-heading .badge{color:#0a254e}
+.panel-primary>.panel-footer+.panel-collapse>.panel-body{border-bottom-color:#0a254e}
+
+/* header / footer */
+header{background-image:linear-gradient(to bottom,#ffffff 20%,#d9d9d9 100%);box-shadow:0px 0px 5px rgba(0,0,0,0.8)}
+footer{background-image:linear-gradient(to top,#ffffff 20%,#d9d9d9 100%);border-top:1px solid #999999}
+
+/* breakpoints */
+@media(min-width:768px){.container{width:750px}}
+@media(min-width:992px){.container{width:970px}}
+@media(min-width:1200px){.container{width:1170px}}
