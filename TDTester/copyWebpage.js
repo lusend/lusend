@@ -1,8 +1,8 @@
 const scrape = require('website-scraper');
 
 let options = {
-  urls: ['https://liberty-sa.terradotta.com/'],
-    directory: './lusendHome',
+    urls: ['https://liberty-sa.terradotta.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=12240'],
+    directory: './lusendBrochure',
 };
 
 scrape(options).then((result) => {
