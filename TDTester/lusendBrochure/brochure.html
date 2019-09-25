@@ -275,6 +275,8 @@
   </div>
 </div>
 
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d89055a063fb40019d7329a&product=inline-share-buttons' async='async'></script>
+
 <script language="JavaScript" type="text/javascript">
   //Constants, Non-Editable
   var BUTTON_LINKS = { //simple enumarated values
@@ -560,6 +562,11 @@
         newbutton.setAttribute("type", "button");
         newbutton.setAttribute("onclick", "createModal('lm')");
         if ($(this).children("button").length != 0) $(this).append(newbutton); //Only show if apply button is there
+
+        var shareDiv = document.createElement("div");
+        shareDiv.style.marginTop = "10px";
+        shareDiv.classList = "sharethis-inline-share-buttons";
+        if ($(this).children("button").length != 0) $(this).append(shareDiv);
       });
     }
 
