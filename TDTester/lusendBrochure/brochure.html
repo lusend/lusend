@@ -405,6 +405,11 @@
     window.open(link, "_blank");
   }
 
+  function navigateSelf(button) {
+    var link = button.dataset.href;
+    window.open(link, "_self");
+  }
+
   function encodeSearchValue(value) { //encode search value for link
     return value.replace(/&/g, 'and');
   }
@@ -556,6 +561,9 @@
     //Add Learn More Button
     if(DISPLAY_LEARN_MORE) {
       $("#pagebody form div.text-center").each(function() {
+        var space = document.createElement("BR");
+        if ($(this).children("button").length != 0) $(this).append(space);
+
         var newbutton = document.createElement("button");
         newbutton.innerHTML = "Learn More";
         newbutton.setAttribute("class", "btn btn-secondary");
@@ -563,12 +571,24 @@
         newbutton.setAttribute("onclick", "createModal('lm')");
         if ($(this).children("button").length != 0) $(this).append(newbutton); //Only show if apply button is there
 
+        var newbutton2 = document.createElement("button");
+        newbutton2.innerHTML = "Already Applied?";
+        newbutton2.setAttribute("class", "btn btn-secondary");
+        newbutton2.setAttribute("type", "button");
+        newbutton2.dataset.href = "/index.cfm?FuseAction=Security.LoginWizardStepOne";
+        newbutton2.setAttribute("onclick", "navigateSelf(this)");
+        if ($(this).children("button").length != 0) $(this).append(newbutton2); //Only show if apply button is there
+
         var shareDiv = document.createElement("div");
         shareDiv.style.marginTop = "10px";
         shareDiv.classList = "sharethis-inline-share-buttons";
         if ($(this).children("button").length != 0) $(this).append(shareDiv);
       });
     }
+
+    $("#pagebody form div.text-center").each(function() {
+        
+      });
 
     //Hide Pitch if No Content
     if ($("#trip_pitch").text() == String.fromCharCode(160) && !VIDEO_LINK) {
